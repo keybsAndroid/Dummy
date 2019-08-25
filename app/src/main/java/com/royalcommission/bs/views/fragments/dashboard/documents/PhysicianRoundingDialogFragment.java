@@ -9,35 +9,42 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.royalcommission.bs.R;
+import com.royalcommission.bs.modules.utils.CommonUtils;
+import com.royalcommission.bs.modules.utils.Constants;
+import com.royalcommission.bs.modules.utils.GridSpacingItemDecoration;
+import com.royalcommission.bs.views.adapters.PhysicianAdapter;
 import com.royalcommission.bs.views.dialogs.BaseDialogFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DocumentSuccessFragment extends BaseDialogFragment implements View.OnClickListener {
+public class PhysicianRoundingDialogFragment extends BaseDialogFragment implements View.OnClickListener {
 
     private AlertDialog alertDialog;
     private long lastClickedTime;
-    private static String mMessage;
-    private ImageView cancel;
 
-    public DocumentSuccessFragment() {
+    private static List<String> doctorList = new ArrayList<>();
+
+    public PhysicianRoundingDialogFragment() {
         // Required empty public constructor
     }
 
-    public static DocumentSuccessFragment getInstance(String message) {
+    public static PhysicianRoundingDialogFragment getInstance(List<String> doctors) {
         // Required empty public constructor
-        mMessage = message;
-        return new DocumentSuccessFragment();
+        doctorList = doctors;
+        return new PhysicianRoundingDialogFragment();
     }
 
     @Override
@@ -53,15 +60,25 @@ public class DocumentSuccessFragment extends BaseDialogFragment implements View.
             alertDialog.setCanceledOnTouchOutside(false);
             if (!alertDialog.isShowing())
                 alertDialog.show();
-            View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_document_success, null, false);
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_dialog_physician_rounding, null, false);
             alertDialog.setContentView(view);
-            TextView message = view.findViewById(R.id.message);
-            if (isValidString(mMessage))
-                message.setText(mMessage);
-            cancel = view.findViewById(R.id.cancel);
-            cancel.setOnClickListener(this);
+            RecyclerView recyclerView = view.findViewById(R.id.today_physician_rounding_recycler_view);
+            setAdapter(recyclerView);
+            view.findViewById(R.id.cancel).setOnClickListener(this);
         }
         return alertDialog;
+    }
+
+    private void setAdapter(RecyclerView recyclerView) {
+        if (getActivity() != null) {
+            PhysicianAdapter physicianAdapter = new PhysicianAdapter(getActivity(), doctorList);
+            recyclerView.setHasFixedSize(true);
+            int valueInPixels = getResources().getInteger(R.integer.grid_view_spacing);
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), Constants.NUMBER_OF_COLUMNS));
+            recyclerView.addItemDecoration(new GridSpacingItemDecoration(Constants.NUMBER_OF_COLUMNS, CommonUtils.dpToPx(recyclerView.getContext(), valueInPixels), true));
+            recyclerView.setNestedScrollingEnabled(false);
+            recyclerView.setAdapter(physicianAdapter);
+        }
     }
 
 
@@ -77,12 +94,6 @@ public class DocumentSuccessFragment extends BaseDialogFragment implements View.
         blockBackButtonPressWhenDialogOpen();
     }
 
-    private void blockBackButtonPressWhenDialogOpen() {
-        if (getDialog() != null) {
-            getDialog().setOnKeyListener((dialog, keyCode, event) -> (keyCode == android.view.KeyEvent.KEYCODE_BACK));
-        }
-    }
-
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
@@ -94,7 +105,7 @@ public class DocumentSuccessFragment extends BaseDialogFragment implements View.
             if (SystemClock.elapsedRealtime() - lastClickedTime < 1000)
                 return;
             lastClickedTime = SystemClock.elapsedRealtime();
-            if (view.getId() == cancel.getId()) {
+            if (view.getId() == R.id.cancel) {
                 dismissAllowingStateLoss();
             }
         }

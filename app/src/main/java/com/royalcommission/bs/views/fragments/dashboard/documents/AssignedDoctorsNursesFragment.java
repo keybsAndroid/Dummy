@@ -34,23 +34,22 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DoctorsNursesAssignedFragment extends BaseDialogFragment implements View.OnClickListener {
+public class AssignedDoctorsNursesFragment extends BaseDialogFragment implements View.OnClickListener {
 
     private AlertDialog alertDialog;
     private long lastClickedTime;
-
     private static List<String> doctorList = new ArrayList<>();
     private static List<String> nurseList = new ArrayList<>();
     private NurseAdapter nurseAdapter;
     private PhysicianAdapter physicianAdapter;
     private LinearLayout doctorLayout, nurseLayout;
 
-    public DoctorsNursesAssignedFragment() {
+    public AssignedDoctorsNursesFragment() {
         // Required empty public constructor
     }
 
-    public static DoctorsNursesAssignedFragment getInstance() {
-        return new DoctorsNursesAssignedFragment();
+    public static AssignedDoctorsNursesFragment getInstance() {
+        return new AssignedDoctorsNursesFragment();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.royalcommission.bs.views.fragments.testresults;
+package com.royalcommission.bs.views.fragments.dashboard.testresults;
 
 
 import android.content.Context;

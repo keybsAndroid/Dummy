@@ -1,4 +1,4 @@
-package com.keybs.rc.modules.network.retrofit.model.responses;
+package com.royalcommission.bs.modules.api.model;
 
 /**
  * Created by Prashant on 12/17/2018.

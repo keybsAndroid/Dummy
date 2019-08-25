@@ -8,83 +8,66 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.royalcommission.bs.R;
-import com.royalcommission.bs.views.interfaces.SubMenuAdapterClickListener;
 
 import java.util.List;
 
 /**
  * Created by Prashant on 10/17/2018.
  */
-public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.SubMenuHolder> {
+public class HospitalGuideMenuAdapter extends RecyclerView.Adapter<HospitalGuideMenuAdapter.HospitalGuideMenuHolder> {
 
-    private int clickedPosition = -1;
     private Context mContext;
-    private List<String> mSubMenuList;
-    private SubMenuAdapterClickListener mMenuItemClickListener;
+    private List<String> hospitalGuideMenuList;
+    private HospitalGuideMenuAdapterClickListener mMenuItemClickListener;
+    private int[] imageResources = {
+            R.drawable.ic_admission_info, R.drawable.ic_discharge_information,
+            R.drawable.ic_hospital_info, R.drawable.ic_surveys
+    };
 
-    public SubMenuAdapter(Context context, List<String> subMenuList, SubMenuAdapterClickListener menuItemClickListener) {
+    public HospitalGuideMenuAdapter(Context context, List<String> guideMenuList, HospitalGuideMenuAdapterClickListener menuItemClickListener) {
         this.mContext = context;
-        this.mSubMenuList = subMenuList;
+        this.hospitalGuideMenuList = guideMenuList;
         this.mMenuItemClickListener = menuItemClickListener;
     }
 
     @NonNull
     @Override
-    public SubMenuAdapter.SubMenuHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public HospitalGuideMenuHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(mContext)
-                .inflate(R.layout.item_row_sub_menu, viewGroup, false);
-        return new SubMenuHolder(view);
+                .inflate(R.layout.item_hospital_guide_row_menu, viewGroup, false);
+        return new HospitalGuideMenuHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final SubMenuAdapter.SubMenuHolder subMenuHolder, int position) {
-        String name = mSubMenuList.get(position);
-        subMenuHolder.subMenuName.setText(name);
-        subMenuHolder.itemView.setOnClickListener(v -> {
-            mMenuItemClickListener.onSubMenuItemClickListener(subMenuHolder.getAdapterPosition());
-            clickedPosition = subMenuHolder.getAdapterPosition();
-            notifyDataSetChanged();
+    public void onBindViewHolder(@NonNull final HospitalGuideMenuHolder hospitalGuideMenuHolder, int position) {
+        String name = hospitalGuideMenuList.get(position);
+        hospitalGuideMenuHolder.subMenuName.setText(name);
+        hospitalGuideMenuHolder.subMenuImage.setImageResource(imageResources[position]);
+        hospitalGuideMenuHolder.itemView.setOnClickListener(v -> {
+            mMenuItemClickListener.onMenuItemClickListener(hospitalGuideMenuHolder.getAdapterPosition());
         });
-
-        if (position == mSubMenuList.size() - 1) {
-            subMenuHolder.lineView.setVisibility(View.GONE);
-        } else {
-            subMenuHolder.lineView.setVisibility(View.VISIBLE);
-        }
-
-        //changeBackGround(subMenuHolder, clickedPosition);
-    }
-
-    private void changeBackGround(SubMenuHolder holder, int clickedPosition) {
-        if (holder != null && clickedPosition != -1) {
-            if (clickedPosition == holder.getAdapterPosition()) {
-                holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.shadowColor));
-            } else {
-                holder.itemView.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.color.white));
-            }
-        }
     }
 
     @Override
     public int getItemCount() {
-        return mSubMenuList.size();
+        return hospitalGuideMenuList.size();
     }
 
-    class SubMenuHolder extends RecyclerView.ViewHolder {
+    class HospitalGuideMenuHolder extends RecyclerView.ViewHolder {
         private TextView subMenuName;
-        private ImageView subMenuArrow;
-        private View lineView;
+        private ImageView subMenuImage;
 
-
-        SubMenuHolder(@NonNull View itemView) {
+        HospitalGuideMenuHolder(@NonNull View itemView) {
             super(itemView);
-            subMenuName = itemView.findViewById(R.id.submenu);
-            subMenuArrow = itemView.findViewById(R.id.arrow);
-            lineView = itemView.findViewById(R.id.line_view);
+            subMenuName = itemView.findViewById(R.id.menu_name);
+            subMenuImage = itemView.findViewById(R.id.menu_image);
         }
+    }
+
+    public interface HospitalGuideMenuAdapterClickListener {
+        void onMenuItemClickListener(int position);
     }
 }

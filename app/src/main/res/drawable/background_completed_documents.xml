@@ -10,10 +10,6 @@
         android:startColor="@color/primary_gradient_dark"
         android:type="linear" />
 
-    <corners
-        android:bottomLeftRadius="0dp"
-        android:bottomRightRadius="16dp"
-        android:topLeftRadius="0dp"
-        android:topRightRadius="16dp" />
+    <corners android:radius="16dp" />
 
 </shape>

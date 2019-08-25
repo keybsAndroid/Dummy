@@ -1,4 +1,4 @@
-package com.royalcommission.bs.views.fragments.testresults;
+package com.royalcommission.bs.views.fragments.dashboard.testresults;
 
 
 import android.os.Bundle;
@@ -20,7 +20,7 @@ import com.royalcommission.bs.app.AppController;
 import com.royalcommission.bs.modules.api.listener.RetrofitListener;
 import com.royalcommission.bs.modules.api.model.BaseResponse;
 import com.royalcommission.bs.modules.api.model.TestResult;
-import com.royalcommission.bs.modules.api.model.TestResultsByIDResponse;
+import com.royalcommission.bs.modules.api.model.TestResultsResponse;
 import com.royalcommission.bs.modules.api.parser.RetrofitResponseParser;
 import com.royalcommission.bs.modules.utils.CommonUtils;
 import com.royalcommission.bs.modules.utils.DateTimePickerUtil;
@@ -242,7 +242,7 @@ public class TestResultsDetailFragment extends BaseFragment {
             @Override
             public void onSuccess(Object object) {
                 if (object != null) {
-                    TestResultsByIDResponse testResultsResponse = RetrofitResponseParser.convertInstanceOfObject(object, TestResultsByIDResponse.class);
+                    TestResultsResponse testResultsResponse = RetrofitResponseParser.convertInstanceOfObject(object, TestResultsResponse.class);
                     if (testResultsResponse != null) {
                         BaseResponse baseResponse = testResultsResponse.getBaseResponse();
                         if (baseResponse != null) {
@@ -268,7 +268,7 @@ public class TestResultsDetailFragment extends BaseFragment {
             public void onError(String error) {
                 showServerError(error);
             }
-        }, TestResultsByIDResponse.class);
+        }, TestResultsResponse.class);
     }
 
 

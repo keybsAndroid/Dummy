@@ -6,8 +6,8 @@
         android:angle="0"
         android:centerColor="@color/secondary_gradient_dark"
         android:centerX="49%"
-        android:endColor="@color/primary_gradient_light"
-        android:startColor="@color/primary_gradient_dark"
+        android:endColor="@color/secondary_gradient_light"
+        android:startColor="@color/secondary_gradient_dark"
         android:type="linear" />
 
     <corners android:radius="16dp" />

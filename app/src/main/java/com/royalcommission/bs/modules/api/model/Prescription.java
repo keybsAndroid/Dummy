@@ -1,8 +1,8 @@
-package com.keybs.rc.modules.network.retrofit.model.responses;
+package com.royalcommission.bs.modules.api.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.keybs.rc.modules.utils.CommonUtils;
-import com.keybs.rc.modules.utils.DateUtils;
+import com.royalcommission.bs.modules.utils.CommonUtils;
+import com.royalcommission.bs.modules.utils.DateUtils;
 
 import java.util.Comparator;
 import java.util.List;
@@ -61,6 +61,19 @@ public class Prescription {
 
     private List<Prescription> prescriptionList;
 
+    public Prescription() {
+
+    }
+
+    public Prescription(String medicine, String endOfDose, String startOfDose, String typeOfDose, float quantityOfDose, int duration) {
+        this.medicine = medicine;
+        this.endOfDose = endOfDose;
+        this.startOfDose = startOfDose;
+        this.typeOfDose = typeOfDose;
+        this.quantityOfDose = quantityOfDose;
+        this.durationOfDoseInDays = duration;
+    }
+
 
     public String getEndOfDose() {
         return endOfDose;
@@ -69,7 +82,6 @@ public class Prescription {
     public void setEndOfDose(String endOfDose) {
         this.endOfDose = endOfDose;
     }
-
 
     public String getStartOfDose() {
         return startOfDose;

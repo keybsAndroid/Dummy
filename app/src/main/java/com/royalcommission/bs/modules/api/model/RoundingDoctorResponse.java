@@ -4,12 +4,12 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class TodayMealResponse {
+public class RoundingDoctorResponse {
     @SerializedName("CommonResponse")
     private BaseResponse baseResponse;
 
-    @SerializedName("InPatientMealResponse")
-    private List<TodayMeal> todayMealList;
+    @SerializedName("DoctorRounding")
+    private List<String> roundingDoctorList;
 
     public BaseResponse getBaseResponse() {
         return baseResponse;
@@ -19,11 +19,11 @@ public class TodayMealResponse {
         this.baseResponse = baseResponse;
     }
 
-    public List<TodayMeal> getTodayMealList() {
-        return todayMealList;
+    public List<String> getRoundingDoctorList() {
+        return roundingDoctorList;
     }
 
-    public void setTodayMealList(List<TodayMeal> todayMealList) {
-        this.todayMealList = todayMealList;
+    public void setRoundingDoctorList(List<String> roundingDoctorList) {
+        this.roundingDoctorList = roundingDoctorList;
     }
 }

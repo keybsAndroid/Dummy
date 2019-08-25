@@ -1,4 +1,4 @@
-package com.keybs.rc.modules.network.retrofit.model.responses;
+package com.royalcommission.bs.modules.api.model;
 
 import com.google.gson.annotations.SerializedName;
 

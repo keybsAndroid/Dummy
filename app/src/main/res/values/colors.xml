@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#7EC247</color>
+    <color name="colorPrimaryDark">#138A9E</color>
+    <color name="colorAccent">#717070</color>
+    <color name="colorPrimaryLight">#a3ca84</color>
+
+    <!--Text Colors-->
+    <color name="textColorPrimary">#000000</color>
+    <color name="textColorSecondary">#FFFFFF</color>
+    <color name="textColorTertiary">#717070</color>
+    <color name="divider">#BABCBE</color>
+
+    <color name="colorPrimaryText">#848788</color>
+    <color name="colorSecondaryText">#A7A9AC</color>
+    <color name="borderColor">#A7A9AC</color>
+
+    <color name="gradientStart">#EAEAEB</color>
+    <color name="gradientEnd">#EDEDEE</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="light_white">#80FFFFFF</color>
+    <color name="menu_text">#282425</color>
+    <color name="shadowColor">#42000000</color>
+    <color name="noNetworkErrorOrange">#FA5128</color>
+    <color name="noNetworkErrorGray">#6A6A6A</color>
+    <color name="selectButtonStartColor">#66BA56</color>
+    <color name="selectButtonEndColor">#4F9747</color>
+    <color name="primary_gradient_dark">#007EA1</color>
+    <color name="primary_gradient_light">#008DA1</color>
+    <color name="secondary_gradient_dark">#5BB546</color>
+    <color name="secondary_gradient_light">#7EC247</color>
+    <color name="list_duration_button_selected">#F1F2F2</color>
+
+
+</resources>

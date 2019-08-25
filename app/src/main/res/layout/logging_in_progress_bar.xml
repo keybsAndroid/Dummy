@@ -2,36 +2,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:layout_margin="@dimen/activity_margin"
     android:background="@android:color/transparent"
-    android:minHeight="250dp">
+    android:minHeight="@dimen/alert_dialog_min_height">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_margin="@dimen/activity_margin"
         android:orientation="vertical">
 
         <ProgressBar
             android:id="@+id/progress_bar"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:indeterminate="true"
             android:theme="@style/LinearProgress" />
 
 
         <TextView
+            android:id="@+id/loader_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/activity_horizontal_margin_medium"
+            android:layout_marginTop="@dimen/activity_margin_half"
             android:gravity="center"
             android:text="@string/logging_in"
             android:textColor="@color/black"
-            android:textSize="@dimen/xxlarge" />
+            android:textSize="@dimen/text_size_large" />
     </LinearLayout>
 
 

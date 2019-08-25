@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/view_margin_half"
             android:gravity="center"
-            android:text="@string/nurse_visit_info"
+            android:text="@string/physician_round"
             android:textColor="@color/black"
             android:textDirection="locale"
             android:textSize="@dimen/text_size_large" />
@@ -33,7 +33,8 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/today_nurse_visit_recycler_view"
+        android:layout_below="@id/title"
+        android:id="@+id/today_physician_rounding_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

@@ -1,4 +1,4 @@
-package com.qanawat.modules.utils;
+package com.royalcommission.bs.modules.utils;
 
 public enum ButtonTag {
     LOGOUT_OK,

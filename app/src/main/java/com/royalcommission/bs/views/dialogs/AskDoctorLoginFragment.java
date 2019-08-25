@@ -22,12 +22,12 @@ import java.util.Objects;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DoctorLoginFragment extends BaseDialogFragment implements View.OnClickListener {
+public class AskDoctorLoginFragment extends BaseDialogFragment implements View.OnClickListener {
 
 
     private long mLastClicked;
 
-    public DoctorLoginFragment() {
+    public AskDoctorLoginFragment() {
         // Required empty public constructor
     }
 
@@ -73,7 +73,7 @@ public class DoctorLoginFragment extends BaseDialogFragment implements View.OnCl
     private void goToDoctorLogin() {
         hideLoggingInProgressBar();
         closeDialogFragment();
-        ((HomeActivity) Objects.requireNonNull(getActivity())).showInternetDialog();
+        ((HomeActivity) Objects.requireNonNull(getActivity())).showDoctorLoginDialog();
     }
 
     @Override

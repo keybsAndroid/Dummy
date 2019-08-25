@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="top_to_bottom_anim_duration_long">1000</integer>
+    <integer name="right_to_left_anim_duration_long">1000</integer>
+    <integer name="grid_view_spacing">16</integer>
+    <integer name="grid_view_spacing_large">32</integer>
+</resources>

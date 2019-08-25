@@ -1,19 +1,20 @@
-package com.keybs.rc.views.adapters.general;
+package com.royalcommission.bs.views.adapters;
+
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.keybs.rc.R;
-import com.keybs.rc.modules.network.retrofit.model.responses.Pathology;
-import com.keybs.rc.modules.utils.CommonUtils;
-import com.keybs.rc.modules.utils.DateUtils;
-import com.keybs.rc.views.interfaces.TestResultListener;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.royalcommission.bs.R;
+import com.royalcommission.bs.modules.api.model.Pathology;
+import com.royalcommission.bs.modules.utils.CommonUtils;
+import com.royalcommission.bs.modules.utils.DateUtils;
 
 import org.sufficientlysecure.htmltextview.HtmlTextView;
 
@@ -62,9 +63,6 @@ public class PathologyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         if (((PathologyHolder) holder).result != null)
                             ((PathologyHolder) holder).result.setText(pathology.getPostOrderName());
 
-                    /*if (CommonUtils.isValidString(pathology.getAppointmentID()))
-                        ((PathologyHolder) holder).appointmentID.setText(pathology.getAppointmentID());*/
-
                     ((PathologyHolder) holder).childView.setVisibility(View.GONE);
 
                 }
@@ -107,25 +105,19 @@ public class PathologyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             if (view.getId() == parentView.getId() || view.getId() == rightArrow.getId()) {
                 if (!isExpanded) {
                     isExpanded = true;
-                    rightArrow.setImageResource(R.drawable.ic_chevron_down_grey600_36dp);
+                    rightArrow.setImageResource(R.drawable.ic_chevron_down_black_24dp);
                 } else {
                     isExpanded = false;
-                    rightArrow.setImageResource(R.drawable.ic_chevron_right_grey600_36dp_auto_mirror);
+                    rightArrow.setImageResource(R.drawable.arrow_right_24_auto_mirror);
                 }
                 childView.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
-
-                /*if (testResultListener != null) {
-                    if (mPathologyList != null && !mPathologyList.isEmpty()) {
-                        Pathology pathology = mPathologyList.get(getAdapterPosition());
-                        if (pathology != null) {
-                            if (CommonUtils.isValidString(pathology.getOrderID()))
-                                testResultListener.onDetails(pathology.getOrderID());
-                        }
-
-                    }
-                }*/
             }
         }
+    }
+
+
+    public interface TestResultListener {
+        void onClick();
     }
 
 

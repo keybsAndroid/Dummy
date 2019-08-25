@@ -1,11 +1,9 @@
-package com.keybs.rc.views.customviews;
+package com.royalcommission.bs.modules.utils;
 
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
-
-import com.keybs.rc.modules.utils.SpinnerHintAdapter;
 
 /**
  * Created by Prashant on 7/18/2018.

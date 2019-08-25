@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="0.999"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
@@ -50,9 +50,11 @@
         android:id="@+id/border"
         android:layout_width="0.5dp"
         android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/activity_margin"
         android:layout_marginTop="@dimen/activity_margin"
         android:layout_marginBottom="@dimen/activity_margin"
         android:layout_weight="0.001"
-        android:background="@color/borderColor" />
+        android:background="@color/borderColor"
+        android:visibility="gone" />
 
 </LinearLayout>

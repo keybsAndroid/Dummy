@@ -10,63 +10,59 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.royalcommission.bs.R;
-import com.royalcommission.bs.modules.api.model.OperationInfo;
 import com.royalcommission.bs.modules.utils.CommonUtils;
-import com.royalcommission.bs.modules.utils.DateUtils;
 
 import java.util.List;
 
 /**
  * Created by Prashant on 10/17/2018.
  */
-public class OperationInfoAdapter extends RecyclerView.Adapter<OperationInfoAdapter.OperationHolder> {
+public class DischargeMedicineInfoAdapter extends RecyclerView.Adapter<DischargeMedicineInfoAdapter.MedicineHolder> {
 
     private Context mContext;
-    private List<OperationInfo> operationInfoList;
+    private List<String> dischargeMedicineList;
 
-    public OperationInfoAdapter(Context context, List<OperationInfo> operationInfos) {
+    public DischargeMedicineInfoAdapter(Context context, List<String> medicines) {
         this.mContext = context;
-        this.operationInfoList = operationInfos;
+        this.dischargeMedicineList = medicines;
     }
 
     @NonNull
     @Override
-    public OperationHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_op_info, viewGroup, false);
-        return new OperationHolder(view);
+    public MedicineHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_discharge_medicine_info, viewGroup, false);
+        return new MedicineHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final OperationHolder operationHolder, int position) {
-        OperationInfo operationInfo = operationInfoList.get(position);
-        if (operationInfo != null) {
-            if (CommonUtils.isValidString(operationInfo.getName()))
-                operationHolder.name.setText(operationInfo.getName());
-            if (CommonUtils.isValidString(operationInfo.getDate())) {
-                String operationTime = DateUtils.getOperationTime(operationInfo.getDate());
-                operationHolder.date.setText(operationTime);
+    public void onBindViewHolder(@NonNull final MedicineHolder medicineHolder, int position) {
+        String medicine = dischargeMedicineList.get(position);
+        if (CommonUtils.isValidString(medicine)) {
+            if (medicine.contains("[")) {
+                String splittingChar = mContext.getString(R.string.square_bracket);
+                int end = medicine.indexOf(splittingChar);
+                String name = medicine.substring(0, end);
+                String detail = medicine.substring(end);
+                if (CommonUtils.isValidString(name))
+                    medicineHolder.name.setText(name);
+                if (CommonUtils.isValidString(detail))
+                    medicineHolder.details.setText(detail);
             }
-            if (CommonUtils.isValidString(operationInfo.getRoom()))
-                operationHolder.room.setText(operationInfo.getRoom());
-            if (CommonUtils.isValidString(operationInfo.getDiagnosis()))
-                operationHolder.diagnosis.setText(operationInfo.getDiagnosis());
         }
     }
 
     @Override
     public int getItemCount() {
-        return operationInfoList.size();
+        return dischargeMedicineList.size();
     }
 
-    class OperationHolder extends RecyclerView.ViewHolder {
-        private TextView name, date, room, diagnosis;
+    class MedicineHolder extends RecyclerView.ViewHolder {
+        private TextView name, details;
 
-        OperationHolder(@NonNull View itemView) {
+        MedicineHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            date = itemView.findViewById(R.id.date);
-            room = itemView.findViewById(R.id.room);
-            diagnosis = itemView.findViewById(R.id.diagnosis);
+            details = itemView.findViewById(R.id.details);
         }
     }
 }

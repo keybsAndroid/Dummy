@@ -1,7 +1,6 @@
 package com.royalcommission.bs.views.fragments.dashboard.documents;
 
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -10,11 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,38 +22,30 @@ import com.royalcommission.bs.app.AppController;
 import com.royalcommission.bs.modules.api.listener.RetrofitListener;
 import com.royalcommission.bs.modules.api.model.BaseResponse;
 import com.royalcommission.bs.modules.api.model.Document;
-import com.royalcommission.bs.modules.api.model.Form;
-import com.royalcommission.bs.modules.api.model.FormResponse;
+import com.royalcommission.bs.modules.api.model.EmailSentResponse;
+import com.royalcommission.bs.modules.utils.CommonUtils;
 import com.royalcommission.bs.modules.utils.SharedPreferenceUtils;
 import com.royalcommission.bs.views.dialogs.BaseDialogFragment;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DocumentViewFragment extends BaseDialogFragment implements View.OnClickListener {
+public class EmailDocumentFragment extends BaseDialogFragment implements View.OnClickListener {
 
     private AlertDialog alertDialog;
     private long lastClickedTime;
     private static Document mDocument;
-    private List<Form> formList = new ArrayList<>();
-    private WebView webView;
-    private String designXML = "";
-    private String formName = "";
-    private Button sendEmail;
-    private TextView docName;
+    private EditText editTextEmail;
+    private Button submit;
 
-    public DocumentViewFragment() {
+    public EmailDocumentFragment() {
         // Required empty public constructor
     }
 
-    public static DocumentViewFragment getInstance(Document document) {
+    public static EmailDocumentFragment getInstance(Document document) {
         // Required empty public constructor
         mDocument = document;
-        return new DocumentViewFragment();
+        return new EmailDocumentFragment();
     }
 
     @Override
@@ -73,13 +61,11 @@ public class DocumentViewFragment extends BaseDialogFragment implements View.OnC
             alertDialog.setCanceledOnTouchOutside(false);
             if (!alertDialog.isShowing())
                 alertDialog.show();
-            View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_document_view, null, false);
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_document_email, null, false);
             alertDialog.setContentView(view);
-            webView = view.findViewById(R.id.web_view);
-            sendEmail = view.findViewById(R.id.send_mail);
-            docName = view.findViewById(R.id.doc_name);
-
-            getMedicalDocList();
+            editTextEmail = view.findViewById(R.id.email);
+            submit = view.findViewById(R.id.submit);
+            submit.setOnClickListener(this);
         }
         return alertDialog;
     }
@@ -107,82 +93,57 @@ public class DocumentViewFragment extends BaseDialogFragment implements View.OnC
             if (SystemClock.elapsedRealtime() - lastClickedTime < 1000)
                 return;
             lastClickedTime = SystemClock.elapsedRealtime();
-
-            if (view.getId() == sendEmail.getId()) {
-
+            if (view.getId() == submit.getId()) {
+                String email = editTextEmail.getText().toString();
+                if (isValidString(email) && CommonUtils.isValidEmail(email)) {
+                    sendMedicalDoc(email);
+                } else {
+                    if (!isValidString(email))
+                        showMessageAlert(null, getString(R.string.enter_your_email));
+                    else if (!CommonUtils.isValidEmail(email))
+                        showMessageAlert(null, getString(R.string.enter_valid_email));
+                }
             }
-
         }
     }
 
-    private void getMedicalDocList() {
+    private void sendMedicalDoc(String email) {
         if (mDocument != null) {
             String appointmentID = mDocument.getAppointmentId();
             String formID = String.valueOf(mDocument.getFormId());
             if (isValidString(appointmentID) && isValidString(formID)) {
-                processRequest(AppController.getWebService().geFormData(formID, SharedPreferenceUtils.getPatientID(getActivity()), appointmentID), false, true, null, new RetrofitListener() {
+                processRequest(AppController.getWebService().sendDocumentEmail(formID, SharedPreferenceUtils.getPatientID(getActivity()), appointmentID, email), false, true, null, new RetrofitListener() {
                     @Override
                     public void onSuccess(Object object) {
                         if (object != null) {
-                            FormResponse formResponse = (FormResponse) object;
-                            BaseResponse baseResponse = formResponse.getBaseResponse();
+                            EmailSentResponse sentResponse = (EmailSentResponse) object;
+                            BaseResponse baseResponse = sentResponse.getBaseResponse();
                             if (baseResponse != null) {
                                 if (baseResponse.getResponseCode() == 1) {
-                                    formList.clear();
-                                    if (formResponse.getFormList() != null && !formResponse.getFormList().isEmpty()) {
-                                        formList.addAll(formResponse.getFormList());
-                                        parseFormData(formList.get(0));
-                                    } else {
-                                        showServerError(getString(R.string.no_results));
-                                    }
+                                    showSuccessMessage(getString(R.string.email_success) + email);
                                 } else {
-                                    showServerError(null);
+                                    showToastMessage(getString(R.string.email_fail));
                                 }
                             }
+                            dismiss();
                         }
                     }
 
                     @Override
                     public void onError(String error) {
-                        showServerError(error);
+                        showToastMessage(error);
+                        dismiss();
                     }
-                }, FormResponse.class);
+                }, EmailSentResponse.class);
             }
         }
 
     }
 
-
-    @SuppressLint("SetJavaScriptEnabled")
-    private void parseFormData(Form form) {
-        if (form != null) {
-            designXML = form.getDesignXML();
-            formName = form.getFormName();
-            if (isValidString(formName))
-                docName.setText(formName);
-            if (isValidString(designXML)) {
-                Pattern htmlPattern = Pattern.compile(".*\\<[^>]+>.*", Pattern.DOTALL);
-                boolean isHTML = htmlPattern.matcher(designXML).matches();
-                if (isHTML) {
-                    runOnUIThread(() -> {
-                        webView.loadData(designXML, "text/html; charset=utf-8", "UTF-8");
-                        webView.setInitialScale(1);
-                        WebSettings webSettings = webView.getSettings();
-                        webSettings.setBuiltInZoomControls(true);
-                        webSettings.setDisplayZoomControls(false);
-                        webSettings.setLoadWithOverviewMode(true);
-                        webSettings.setUseWideViewPort(true);
-                        webSettings.setJavaScriptEnabled(true);
-                        webView.setWebViewClient(new WebViewClient() {
-                            public void onPageFinished(WebView view, String url) {
-                                sendEmail.setVisibility(View.VISIBLE);
-                            }
-                        });
-                    });
-                } else {
-                    showMessageAlert(null, "Can't parse the data..");
-                }
-            }
+    private void showSuccessMessage(String message) {
+        DocumentSuccessFragment fragment = DocumentSuccessFragment.getInstance(message);
+        if (getActivity() != null) {
+            fragment.show(getActivity().getSupportFragmentManager(), "document success");
         }
     }
 

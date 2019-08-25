@@ -1,12 +1,7 @@
-package com.keybs.rc.views.adapters.testresults;
+package com.royalcommission.bs.views.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.transition.ChangeBounds;
-import android.support.transition.TransitionManager;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +9,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.keybs.rc.R;
-import com.keybs.rc.modules.network.retrofit.model.responses.TestResult;
-import com.keybs.rc.modules.utils.CommonUtils;
-import com.keybs.rc.modules.utils.DateUtils;
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.ChangeBounds;
+import androidx.transition.TransitionManager;
+
+import com.royalcommission.bs.R;
+import com.royalcommission.bs.modules.api.model.TestResult;
+import com.royalcommission.bs.modules.utils.CommonUtils;
+import com.royalcommission.bs.modules.utils.DateUtils;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class TestResultListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         viewGroup = parent;
-        View viewHolder = inflater.inflate(R.layout.item_lab_test_result_expandable_list, parent, false);
+        View viewHolder = inflater.inflate(R.layout.test_result_expandable_list, parent, false);
         return new TestResultsListAdapterHolder(viewHolder);
     }
 
@@ -105,7 +106,7 @@ public class TestResultListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 if (linearLayout != null)
                     linearLayout.setVisibility(View.VISIBLE);
             } else {
-                textView.setText(context.getString(R.string.hypen));
+                textView.setText(context.getString(R.string.hyphen));
                 if (linearLayout != null)
                     linearLayout.setVisibility(View.GONE);
             }
@@ -130,7 +131,6 @@ public class TestResultListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         private CardView cardView;
         private TextView type, description, result, prevResult, remark, panic, resultDate, hospital, modDate, specimenName, specimenCode, specimenNo, sampleName, status, flag;
         private LinearLayout typeLL, descriptionLL, resultLL, prevResultLL, remarkLL, panicLL, resultDateLL, hospitalLL, modDateLL, specimenNameLL, specimenCodeLL, specimenNoLL, sampleNameLL, statusLL, flagLL;
-        //private RecyclerView testImagesRV;
 
         TestResultsListAdapterHolder(View view) {
             super(view);
@@ -173,9 +173,6 @@ public class TestResultListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             sampleNameLL = view.findViewById(R.id.sample_name_layout);
             statusLL = view.findViewById(R.id.status_layout);
             flagLL = view.findViewById(R.id.flag_layout);
-
-
-            //testImagesRV = childView.findViewById(R.id.test_images);
             parentView.setOnClickListener(this);
             cardView.setOnClickListener(this);
         }

@@ -1,4 +1,4 @@
-package com.keybs.rc.modules.utils;
+package com.royalcommission.bs.modules.utils;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -11,7 +11,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.keybs.rc.R;
+import com.royalcommission.bs.R;
 
 import java.util.Calendar;
 import java.util.Locale;

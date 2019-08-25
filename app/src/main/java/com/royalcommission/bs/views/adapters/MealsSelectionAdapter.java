@@ -9,10 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.royalcommission.bs.R;
-import com.royalcommission.bs.modules.api.model.TodayMeal;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -21,17 +21,16 @@ import java.util.List;
 /**
  * Created by Prashant on 7/3/2018.
  */
-public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> {
+public class MealsSelectionAdapter extends RecyclerView.Adapter<MealsSelectionAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
-    private List<TodayMeal> todayMealList;
-    private int[] imageResources = {R.drawable.ic_break_fast, R.drawable.ic_lunch,
-            R.drawable.ic_dinner, R.drawable.ic_snacks};
+    private List<String> todayMealList;
+    private int[] imageResources = {R.drawable.ic_care_giver_svg, R.drawable.ic_patient_meal_svg};
     private Context mContext;
-    private MealsClickListener mMealsClickListener;
+    private MealsSelectionClickListener mMealsClickListener;
     private String mealName = "";
 
-    public MealsAdapter(Context context, List<TodayMeal> menuList, MealsClickListener mealsClickListener) {
+    public MealsSelectionAdapter(Context context, List<String> menuList, MealsSelectionClickListener mealsClickListener) {
         todayMealList = menuList;
         inflater = (LayoutInflater.from(context));
         mContext = context;
@@ -40,29 +39,26 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
 
     @NonNull
     @Override
-    public MealsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.item_grid_meal, null);
+    public MealsSelectionAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.item_grid_meal_selection, null);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NotNull MealsAdapter.ViewHolder holder, int position) {
-        TodayMeal todayMeal = todayMealList.get(position);
-        if (position == 0) {
-            mealName = mContext.getString(R.string.breakfast);
-        } else if (position == 1) {
-            mealName = mContext.getString(R.string.lunch);
-        } else if (position == 2) {
-            mealName = mContext.getString(R.string.dinner);
-        } else if (position == 3) {
-            mealName = mContext.getString(R.string.snacks);
-        }
-        holder.textView.setText(mealName);
+    public void onBindViewHolder(@NotNull MealsSelectionAdapter.ViewHolder holder, int position) {
+        String mealFor = todayMealList.get(position);
+        holder.textView.setText(mealFor);
         holder.imageView.setImageResource(imageResources[position]);
+        if (position == 0) {
+            holder.select.setBackground(ContextCompat.getDrawable(holder.select.getContext(), R.drawable.button_primary_corner_small));
+           // holder.border.setVisibility(View.INVISIBLE);
+        } else if (position == 1) {
+            holder.border.setVisibility(View.INVISIBLE);
+            //holder.select.setBackground(ContextCompat.getDrawable(holder.select.getContext(), R.drawable.button_secondary_corner_small));
+        }
         holder.select.setOnClickListener(v -> {
-            if (mMealsClickListener != null) {
-                mMealsClickListener.onClick(mealName, todayMealList.get(holder.getAdapterPosition()));
-            }
+            if (mMealsClickListener != null)
+                mMealsClickListener.onClick(position);
         });
     }
 
@@ -80,17 +76,19 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
         private ImageView imageView;
         private TextView textView;
         private Button select;
+        private View border;
 
         public ViewHolder(View view) {
             super(view);
             imageView = view.findViewById(R.id.grid_image);
             textView = view.findViewById(R.id.grid_title);
             select = view.findViewById(R.id.select);
+            border = view.findViewById(R.id.border);
         }
     }
 
-    public interface MealsClickListener {
-        void onClick(String title, TodayMeal todayMeal);
+    public interface MealsSelectionClickListener {
+        void onClick(int position);
     }
 
 

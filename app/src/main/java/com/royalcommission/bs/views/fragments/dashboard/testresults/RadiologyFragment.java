@@ -1,4 +1,4 @@
-package com.royalcommission.bs.views.fragments.testresults;
+package com.royalcommission.bs.views.fragments.dashboard.testresults;
 
 
 import android.os.Bundle;
@@ -137,7 +137,6 @@ public class RadiologyFragment extends BaseFragment implements TestResultListene
                     } else {
                         showToastMessage(getString(R.string.select_a_period));
                     }
-
                 } else if (viewIP.getId() == fromDatePicker.getId() || viewIP.getId() == fromDateTextView.getId()) {
                     isFromIP = true;
                     if (SystemClock.elapsedRealtime() - mFromLastClickTime < 2000)
@@ -152,7 +151,6 @@ public class RadiologyFragment extends BaseFragment implements TestResultListene
                     openDatePicker(dateTimeSetListenerIP, selectedMonthLimit);
                 }
             };
-
             search.setOnClickListener(onClickListener);
             searchLayout.setOnClickListener(onClickListener);
             threeMonthButtonIP = listDurationLayout.findViewById(R.id.three_month);
@@ -263,7 +261,7 @@ public class RadiologyFragment extends BaseFragment implements TestResultListene
                                         radiologyExpandableAdapter.notifyDataSetChanged();
 
                                     if (scanResultList.isEmpty())
-                                        showServerError(null);
+                                        showMessageAlert(null, getString(R.string.no_results));
                                 }
                             } else {
                                 showServerError(null);

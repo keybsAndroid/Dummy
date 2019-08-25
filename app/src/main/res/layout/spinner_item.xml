@@ -6,16 +6,16 @@
     android:layout_gravity="center"
     android:layout_marginStart="@dimen/view_margin"
     android:layout_marginEnd="@dimen/view_margin"
-    android:paddingStart="@dimen/view_margin"
-    android:paddingEnd="@dimen/view_margin"
     android:gravity="start|center"
     android:maxLines="1"
     android:minHeight="@dimen/edit_text_min_height"
+    android:paddingStart="@dimen/view_margin"
+    android:paddingEnd="@dimen/view_margin"
     android:singleLine="false"
     android:textAlignment="viewStart"
     android:textColor="@color/black"
     android:textDirection="locale"
-    android:textSize="@dimen/small" />
+    android:textSize="@dimen/text_size_small" />
 
 
 

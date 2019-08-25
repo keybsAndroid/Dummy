@@ -1,4 +1,4 @@
-package com.qanawat.modules.api.parser;
+package com.royalcommission.bs.modules.api.parser;
 
 import com.google.gson.Gson;
 

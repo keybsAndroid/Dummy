@@ -1,4 +1,4 @@
-package com.royalcommission.bs.views.fragments.testresults;
+package com.royalcommission.bs.views.fragments.dashboard.testresults;
 
 
 import android.os.Bundle;
@@ -284,7 +284,7 @@ public class SpecialClinicFragment extends BaseFragment {
 
             @Override
             public void onError(String error) {
-
+                showServerError(error);
             }
         }, SpecialClinicResponse.class);
     }

@@ -2,7 +2,7 @@ package com.royalcommission.bs.modules.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class EmailSentResponse {
+public class DocumentRequestResponse {
 
 
     @SerializedName("CommonResponse")

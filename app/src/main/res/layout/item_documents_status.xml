@@ -1,51 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/subMenuHeight"
+    android:layout_height="@dimen/docHeight"
+    android:layout_marginStart="1dp"
+    android:layout_marginTop="1dp"
+    android:layout_marginEnd="1dp"
+    android:layout_marginBottom="2dp"
     android:animateLayoutChanges="true"
     android:background="@color/white"
-    android:minHeight="@dimen/subMenuHeight"
+    android:minHeight="@dimen/docHeight"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/line"
+        android:layout_margin="@dimen/view_margin_half"
         tools:ignore="UselessParent">
 
 
         <TextView
             android:id="@+id/document"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_toStartOf="@+id/document_status"
+            android:gravity="start"
+            android:maxLines="2"
             android:minHeight="@dimen/edit_text_min_height"
-            android:padding="@dimen/padding_large"
-            android:text="@string/completed_documents"
+            android:padding="@dimen/padding_medium"
+            android:text="@string/no_results"
+            android:textColor="@color/borderColor"
             android:textSize="@dimen/text_size_large"
-            android:textStyle="bold" />
+            android:textStyle="normal" />
 
-        <ImageView
-            android:id="@+id/arrow"
-            android:layout_width="@dimen/arrow"
-            android:layout_height="@dimen/arrow"
+        <TextView
+            android:id="@+id/document_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:layout_gravity="center|end"
-            android:layout_margin="@dimen/view_margin_half"
-            android:src="@drawable/ic_sub_menu_arrow"
-            tools:ignore="ContentDescription" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical">
-
-            <include
-                android:id="@+id/line_view"
-                layout="@layout/layout_border" />
-        </LinearLayout>
-
+            android:layout_marginStart="@dimen/view_margin_half"
+            android:layout_marginEnd="@dimen/view_margin_half"
+            android:gravity="center"
+            android:minHeight="@dimen/edit_text_min_height"
+            android:padding="@dimen/padding_medium"
+            android:text="@string/status_"
+            android:textColor="@color/borderColor"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="normal" />
     </RelativeLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/line_view"
+            layout="@layout/layout_border" />
+    </LinearLayout>
+
+</RelativeLayout>

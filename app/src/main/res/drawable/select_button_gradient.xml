@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <gradient
+        android:angle="45"
+        android:centerColor="@color/selectButtonStartColor"
+        android:centerX="49%"
+        android:endColor="@color/selectButtonEndColor"
+        android:startColor="@color/selectButtonStartColor"
+        android:type="linear" />
+    <corners android:radius="@dimen/select_button_radius" />
+
+</shape>

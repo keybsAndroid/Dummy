@@ -5,10 +5,10 @@
             <item>
                 <shape>
                     <corners android:radius="0dp" />
-                    <padding android:bottom="@dimen/drawable_margin" android:left="@dimen/drawable_margin" android:right="@dimen/drawable_margin" android:top="@dimen/drawable_margin" />
+                    <padding android:bottom="@dimen/view_margin_half" android:left="@dimen/view_margin_half" android:right="@dimen/view_margin_half" android:top="@dimen/view_margin_half" />
                 </shape>
             </item>
-            <item android:right="@dimen/drawable_margin">
+            <item android:right="@dimen/view_margin_half">
                 <bitmap android:gravity="center_vertical|end" android:src="@drawable/ic_chevron_down_black_24dp" />
             </item>
         </layer-list>

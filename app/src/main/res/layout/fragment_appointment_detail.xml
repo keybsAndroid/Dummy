@@ -1,14 +1,322 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/screen_background_corner"
     tools:context=".views.fragments.dashboard.outpatient.AppointmentDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/view_margin">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginBottom="@dimen/view_margin_half"
+            android:gravity="center"
+            android:text="@string/outpatient_information"
+            android:textColor="@color/black"
+            android:textDirection="locale"
+            android:textSize="@dimen/text_size_large" />
+
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:gravity="center"
+            android:textColor="@color/borderColor"
+            android:textDirection="locale"
+            android:textSize="@dimen/text_size_normal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/activity_margin_half"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/layout_border" />
+
+                    <LinearLayout
+                        android:id="@+id/appointment_date_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/edit_text_min_height"
+                            android:orientation="horizontal"
+                            android:weightSum="1.1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center"
+                                android:padding="@dimen/padding_medium"
+                                android:text="@string/appointment_date"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.1"
+                                android:gravity="center"
+                                android:padding="@dimen/padding_medium"
+                                android:text="@string/colon"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                            <TextView
+                                android:id="@+id/appointment_date"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center"
+                                android:padding="@dimen/padding_medium"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                        </LinearLayout>
+
+                        <include layout="@layout/layout_border" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/appointment_time_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/edit_text_min_height"
+                            android:orientation="horizontal"
+                            android:weightSum="1.1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center"
+                                android:padding="@dimen/padding_medium"
+                                android:text="@string/appointment_time"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.1"
+                                android:gravity="center"
+                                android:padding="@dimen/padding_medium"
+                                android:text="@string/colon"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                            <TextView
+                                android:id="@+id/appointment_time"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center"
+                                android:padding="@dimen/padding_medium"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                        </LinearLayout>
+
+                        <include layout="@layout/layout_border" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/doctor_info_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/edit_text_min_height"
+                            android:orientation="horizontal"
+                            android:weightSum="1.1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center"
+                                android:padding="@dimen/padding_medium"
+                                android:text="@string/doctor_information"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.1"
+                                android:gravity="center"
+                                android:padding="@dimen/padding_medium"
+                                android:text="@string/colon"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                            <TextView
+                                android:id="@+id/doctor_information"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center"
+                                android:padding="@dimen/padding_medium"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                        </LinearLayout>
+
+                        <include layout="@layout/layout_border" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/dept_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/edit_text_min_height"
+                            android:orientation="horizontal"
+                            android:weightSum="1.1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center"
+                                android:padding="@dimen/padding_medium"
+                                android:text="@string/department"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.1"
+                                android:gravity="center"
+                                android:padding="@dimen/padding_medium"
+                                android:text="@string/colon"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                            <TextView
+                                android:id="@+id/department"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center"
+                                android:padding="@dimen/padding_medium"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                        </LinearLayout>
+
+                        <include layout="@layout/layout_border" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/location_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/edit_text_min_height"
+                            android:orientation="horizontal"
+                            android:weightSum="1.1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center"
+                                android:padding="@dimen/padding_medium"
+                                android:text="@string/location"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.1"
+                                android:gravity="center"
+                                android:padding="@dimen/padding_medium"
+                                android:text="@string/colon"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                            <TextView
+                                android:id="@+id/location"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center"
+                                android:padding="@dimen/padding_medium"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_normal" />
+
+                        </LinearLayout>
+
+                        <include layout="@layout/layout_border" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

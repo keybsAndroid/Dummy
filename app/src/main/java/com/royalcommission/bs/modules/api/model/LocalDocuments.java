@@ -2,7 +2,7 @@ package com.royalcommission.bs.modules.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Documents {
+public class LocalDocuments {
 
     @SerializedName("DocumentName")
     private String documentName;

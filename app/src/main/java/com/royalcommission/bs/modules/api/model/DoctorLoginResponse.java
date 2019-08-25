@@ -2,14 +2,13 @@ package com.royalcommission.bs.modules.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class EmailSentResponse {
-
+public class DoctorLoginResponse {
 
     @SerializedName("CommonResponse")
     private BaseResponse baseResponse;
 
-    @SerializedName("FormResponse")
-    private String formResponse;
+    @SerializedName("DoctorLoginResponse")
+    private String doctorLoginResponse;
 
     public BaseResponse getBaseResponse() {
         return baseResponse;
@@ -19,11 +18,11 @@ public class EmailSentResponse {
         this.baseResponse = baseResponse;
     }
 
-    public String getFormResponse() {
-        return formResponse;
+    public String getDoctorLoginResponse() {
+        return doctorLoginResponse;
     }
 
-    public void setFormResponse(String formResponse) {
-        this.formResponse = formResponse;
+    public void setDoctorLoginResponse(String doctorLoginResponse) {
+        this.doctorLoginResponse = doctorLoginResponse;
     }
 }

@@ -2,45 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/screen_background_corner"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cancel"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/activity_margin_half"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/view_margin">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/view_margin_half"
-            android:gravity="center"
-            android:text="@string/medical_team"
-            android:textColor="@color/black"
-            android:textDirection="locale"
-            android:textSize="@dimen/text_size_large" />
-
-        <include layout="@layout/layout_border" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/view_margin_half"
-            android:layout_marginBottom="@dimen/view_margin_half"
-            android:gravity="center"
-            android:text="@string/the_staff_assigned_to_you_at_rchsp_will_take_care_for_your_health_wish_you_full_and_fast_recovery"
-            android:textColor="@color/colorPrimary"
-            android:textDirection="locale"
-            android:textSize="@dimen/text_size_normal" />
-
-    </LinearLayout>
 
     <ImageView
         android:id="@+id/cancel"
@@ -54,15 +18,13 @@
         android:gravity="center"
         android:padding="@dimen/padding_medium"
         android:src="@drawable/ic_close"
-        android:tint="@color/white"
-        android:visibility="visible" />
+        android:tint="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/today_physician_rounding_recycler_view"
+        android:id="@+id/notification_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
+        android:layout_below="@id/cancel"
         android:layout_margin="@dimen/activity_margin"
-        android:scrollbars="horizontal" />
+        android:scrollbars="vertical" />
 </RelativeLayout>

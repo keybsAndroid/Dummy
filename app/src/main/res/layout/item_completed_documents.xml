@@ -2,50 +2,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/subMenuHeight"
+    android:layout_height="@dimen/docHeight"
     android:animateLayoutChanges="true"
-    android:background="@color/white"
-    android:minHeight="@dimen/subMenuHeight"
+    android:minHeight="@dimen/docHeight"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="@dimen/view_margin_half"
+        android:background="@drawable/background_completed_documents"
         tools:ignore="UselessParent">
-
-        <TextView
-            android:id="@+id/submenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:gravity="start|center"
-            android:minHeight="@dimen/subMenuHeight"
-            android:paddingStart="@dimen/activity_padding"
-            android:paddingEnd="@dimen/activity_padding"
-            android:textColor="@color/textColorPrimary"
-            android:textSize="@dimen/text_size_medium" />
-
-        <ImageView
-            android:id="@+id/arrow"
-            android:layout_width="@dimen/arrow"
-            android:layout_height="@dimen/arrow"
-            android:layout_alignParentEnd="true"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center|end"
-            android:layout_margin="@dimen/view_margin_half"
-            android:src="@drawable/ic_sub_menu_arrow"
-            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <include
-                android:id="@+id/line_view"
-                layout="@layout/layout_border" />
+            <TextView
+                android:id="@+id/document"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/view_margin_half"
+                android:layout_weight="0.8"
+                android:minHeight="@dimen/edit_text_min_height"
+                android:padding="@dimen/padding_medium"
+                android:text="@string/no_results"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_large"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/zoom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/view_margin_half"
+                android:layout_weight="0.2"
+                android:background="@drawable/rectangular_border_corner"
+                android:gravity="center"
+                android:src="@drawable/ic_completed_document_zoom"
+                tools:ignore="ContentDescription" />
+
         </LinearLayout>
 
     </RelativeLayout>

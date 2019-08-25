@@ -1,6 +1,7 @@
-package com.qanawat.views.interfaces;
+package com.royalcommission.bs.views.dialogs;
 
-import com.qanawat.modules.utils.ButtonTag;
+
+import com.royalcommission.bs.modules.utils.ButtonTag;
 
 public interface DialogClickListener {
 

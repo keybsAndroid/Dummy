@@ -1,17 +1,17 @@
-package com.keybs.rc.modules.network.retrofit.model.responses;
+package com.royalcommission.bs.modules.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Prashant on 12/10/2018.
  */
-public class SurveyQuestion {
+public class SurveyQuestionResponse {
 
     @SerializedName("CommonResponse")
     private BaseResponse baseResponse;
 
     @SerializedName("SurveyResponse")
-    private Question question;
+    private SurveyQuestion surveyQuestion;
 
     public BaseResponse getBaseResponse() {
         return baseResponse;
@@ -21,11 +21,11 @@ public class SurveyQuestion {
         this.baseResponse = baseResponse;
     }
 
-    public Question getQuestion() {
-        return question;
+    public SurveyQuestion getSurveyQuestion() {
+        return surveyQuestion;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
+    public void setSurveyQuestion(SurveyQuestion surveyQuestion) {
+        this.surveyQuestion = surveyQuestion;
     }
 }

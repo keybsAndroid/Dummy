@@ -1,25 +1,25 @@
-package com.keybs.rc.views.fragments.dialog;
+package com.royalcommission.bs.views.fragments.login;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.keybs.rc.R;
-import com.keybs.rc.app.AppController;
-import com.keybs.rc.modules.network.listener.RetrofitListener;
-import com.keybs.rc.modules.network.retrofit.model.responses.BaseResponse;
-import com.keybs.rc.modules.network.retrofit.model.responses.LocalAccount;
-import com.keybs.rc.modules.network.retrofit.model.responses.LocalAccountResponse;
-import com.keybs.rc.modules.network.retrofit.parser.RetrofitResponseParser;
-import com.keybs.rc.modules.utils.CommonUtils;
-import com.keybs.rc.views.fragments.base.BaseDialogFragment;
+import androidx.annotation.Nullable;
 
-import java.util.List;
+import com.royalcommission.bs.R;
+import com.royalcommission.bs.app.AppController;
+import com.royalcommission.bs.modules.api.listener.RetrofitListener;
+import com.royalcommission.bs.modules.api.model.BaseResponse;
+import com.royalcommission.bs.modules.api.model.LocalAccount;
+import com.royalcommission.bs.modules.api.model.LocalAccountResponse;
+import com.royalcommission.bs.modules.api.parser.RetrofitResponseParser;
+import com.royalcommission.bs.modules.utils.CommonUtils;
+import com.royalcommission.bs.views.dialogs.BaseDialogFragment;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by Prashant on 7/30/2018.
@@ -30,14 +30,12 @@ public class ForgotPasswordFragment extends BaseDialogFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NotNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.forgot_password_dialog, null);
         enterUserMedicalNumber = view.findViewById(R.id.enter_user_med_num);
         Button confirm = view.findViewById(R.id.find);
-
         if (getDialog() != null)
             getDialog().setCanceledOnTouchOutside(false);
-
         confirm.setOnClickListener(v -> {
             if (enterUserMedicalNumber != null && isValidString(enterUserMedicalNumber.getText().toString())) {
                 getPassword(enterUserMedicalNumber.getText().toString());
@@ -48,7 +46,6 @@ public class ForgotPasswordFragment extends BaseDialogFragment {
         return view;
     }
 
-
     private void closeDialogFragment() {
         if (getDialog() != null) {
             getDialog().cancel();
@@ -57,7 +54,7 @@ public class ForgotPasswordFragment extends BaseDialogFragment {
     }
 
     private void getPassword(String patientID) {
-        processGETRequest(false, null, true, AppController.getWebService().getPassword(patientID), new RetrofitListener() {
+        processRequest(AppController.getWebService().getPassword(patientID), false, true, null, new RetrofitListener() {
             @Override
             public void onSuccess(Object object) {
                 if (object != null) {
@@ -78,6 +75,8 @@ public class ForgotPasswordFragment extends BaseDialogFragment {
                                     } else {
                                         showMessageAlert(getString(R.string.find_your_password), getString(R.string.email_is_not_registered));
                                     }
+                                } else {
+                                    showMessageAlert(getString(R.string.find_your_password), getString(R.string.email_is_not_registered));
                                 }
                             } else {
                                 closeDialogFragment();
@@ -85,24 +84,18 @@ public class ForgotPasswordFragment extends BaseDialogFragment {
                             }
                         } else {
                             closeDialogFragment();
-                            showAPIError();
+                            showServerError(null);
                         }
                     } else {
-                        showAPIError();
+                        showServerError(null);
                     }
                 }
             }
 
             @Override
-            public void onSuccess(List<Object> object) {
-                Log.d("Forgot Password", "Success: " + object);
-            }
-
-            @Override
             public void onError(String error) {
-                closeDialogFragment();
-                Log.d("Forgot Password", "onError: " + error);
+                showServerError(null);
             }
-        });
+        }, LocalAccountResponse.class);
     }
 }

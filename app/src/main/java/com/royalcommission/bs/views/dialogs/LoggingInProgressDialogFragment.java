@@ -1,4 +1,4 @@
-package com.keybs.rc.views.fragments.dialog;
+package com.royalcommission.bs.views.dialogs;
 
 
 import android.app.Dialog;
@@ -7,10 +7,15 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
-import com.keybs.rc.R;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+
+import com.royalcommission.bs.R;
+import com.royalcommission.bs.modules.utils.CommonUtils;
 
 /**
  * Created by Prashant on 7/30/2018.
@@ -20,8 +25,10 @@ import com.keybs.rc.R;
 public class LoggingInProgressDialogFragment extends DialogFragment {
 
     private ProgressDialog dialog;
+    private static String mLoaderMessage;
 
-    public static LoggingInProgressDialogFragment newInstance() {
+    public static LoggingInProgressDialogFragment newInstance(String loaderMessage) {
+        mLoaderMessage = loaderMessage;
         return new LoggingInProgressDialogFragment();
     }
 
@@ -33,7 +40,6 @@ public class LoggingInProgressDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         if (getActivity() != null) {
-            //getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
             dialog = new ProgressDialog(getActivity());
             if (dialog.getWindow() != null)
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
@@ -43,7 +49,16 @@ public class LoggingInProgressDialogFragment extends DialogFragment {
             dialog.setMessage("");
             if (!dialog.isShowing())
                 dialog.show();
-            dialog.setContentView(R.layout.logging_in_progress_bar);
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.logging_in_progress_bar, null, false);
+            dialog.setContentView(view);
+            if (view.findViewById(R.id.loader_message) != null) {
+                TextView loaderMessage = view.findViewById(R.id.loader_message);
+                if (CommonUtils.isValidString(mLoaderMessage)) {
+                    loaderMessage.setText(mLoaderMessage);
+                } else {
+                    loaderMessage.setText(getString(R.string.logging_in));
+                }
+            }
         }
 
         return dialog;
@@ -52,16 +67,11 @@ public class LoggingInProgressDialogFragment extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        /*if (getActivity() != null) {
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-        }*/
-
+        if (getDialog() != null) {
+            getDialog().cancel();
+            getDialog().dismiss();
+        }
     }
-
-    /*@Override
-    public void dismiss() {
-        if (getFragmentManager() != null) super.dismiss();
-    }*/
 
     @Override
     public void onResume() {

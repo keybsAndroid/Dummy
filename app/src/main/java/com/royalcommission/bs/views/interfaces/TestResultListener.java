@@ -1,4 +1,4 @@
-package com.keybs.rc.views.interfaces;
+package com.royalcommission.bs.views.interfaces;
 
 public interface TestResultListener {
 

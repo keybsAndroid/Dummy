@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Prashant on 12/10/2018.
  */
-public class TestResultsByIDResponse {
+public class TestResultsResponse {
 
     @SerializedName("CommonResponse")
     private BaseResponse baseResponse;

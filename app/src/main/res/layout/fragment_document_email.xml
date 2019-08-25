@@ -5,75 +5,51 @@
     android:background="@drawable/screen_background_corner">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/send_mail"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_margin="@dimen/activity_margin"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/view_margin_half"
-            android:gravity="center"
-            android:text="@string/completed_documents"
-            android:textColor="@color/black"
-            android:textDirection="locale"
-            android:textSize="@dimen/text_size_large"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/activity_margin"
-            android:layout_marginBottom="@dimen/activity_margin"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/doc_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/view_margin_half"
-                android:gravity="start"
-                android:textColor="@color/black"
-                android:textDirection="locale"
-                android:textSize="@dimen/text_size_large" />
-
-            <include layout="@layout/layout_border" />
-
-        </LinearLayout>
-
-        <WebView
-            android:id="@+id/web_view"
-            android:layout_width="700dp"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/activity_margin_large"
-            android:layout_weight="1"
-            android:minWidth="700dp" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/send_mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/view_margin"
-        android:background="@drawable/button_primary"
-        android:drawableStart="@drawable/ic_send_via_email"
-        android:drawablePadding="@dimen/view_margin_half"
-        android:gravity="center"
-        android:padding="@dimen/view_margin_half"
-        android:text="@string/send_via_email"
-        android:textColor="@color/white"
-        android:visibility="gone" />
+        android:layout_margin="@dimen/activity_margin"
+        android:background="@drawable/rectangular_border_corner"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:background="@drawable/email_cell_shape"
+            android:hint="@string/enter_your_email"
+            android:imeOptions="actionDone"
+            android:inputType="textEmailAddress"
+            android:minWidth="@dimen/min_email_width"
+            android:minHeight="@dimen/editTextHeight"
+            android:paddingStart="@dimen/padding_medium"
+            android:paddingEnd="@dimen/padding_medium"
+            android:textColor="@color/textColorTertiary" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:background="@color/white">
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/button_primary"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:padding="@dimen/view_margin_half"
+                android:text="@string/submit"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </LinearLayout>
+
 
 </RelativeLayout>

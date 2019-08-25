@@ -1,20 +1,20 @@
-package com.qanawat.views.dialogs;
+package com.royalcommission.bs.views.dialogs;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
 
-import com.qanawat.R;
-import com.qanawat.modules.utils.ButtonTag;
-import com.qanawat.views.fragments.base.BaseDialogFragment;
-import com.qanawat.views.interfaces.DialogClickListener;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.royalcommission.bs.R;
+import com.royalcommission.bs.modules.utils.ButtonTag;
+
 
 /**
  * Created by Prashant on 7/30/2018.
@@ -42,6 +42,15 @@ public class MessageDialogFragment extends BaseDialogFragment {
         return fragment;
     }
 
+    public static MessageDialogFragment newInstance(String title, String error) {
+        MessageDialogFragment fragment = new MessageDialogFragment();
+        Bundle args = new Bundle();
+        args.putString("title", title);
+        args.putString("message", error);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -63,29 +72,19 @@ public class MessageDialogFragment extends BaseDialogFragment {
             if (BUTTON_NEGATIVE_TEXT == null)
                 BUTTON_NEGATIVE_TEXT = getString(R.string.cancel_button);
 
-            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, BUTTON_POSITIVE_TEXT, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if (clickListener != null)
-                        clickListener.positiveButtonClicked(TAG);
-                    alertDialog.cancel();
-                }
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, BUTTON_POSITIVE_TEXT, (dialog, which) -> {
+                if (clickListener != null)
+                    clickListener.positiveButtonClicked(TAG);
+                alertDialog.cancel();
             });
 
             if (!isSingle) {
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, BUTTON_NEGATIVE_TEXT, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (clickListener != null)
-                            clickListener.negativeButtonClicked(TAG);
-                        alertDialog.cancel();
-                    }
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, BUTTON_NEGATIVE_TEXT, (dialog, which) -> {
+                    if (clickListener != null)
+                        clickListener.negativeButtonClicked(TAG);
+                    alertDialog.cancel();
                 });
             }
-
-            /*if (alertDialog.getWindow() != null && isGreaterThanLolipop()) {
-                alertDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimationSlideLeftRight;
-            }*/
 
             if (!alertDialog.isShowing())
                 alertDialog.show();
@@ -116,15 +115,5 @@ public class MessageDialogFragment extends BaseDialogFragment {
         blockBackButtonPressWhenDialogOpen();
     }
 
-    private void blockBackButtonPressWhenDialogOpen() {
-        if (getDialog() != null) {
-            getDialog().setOnKeyListener(new DialogInterface.OnKeyListener() {
-                @Override
-                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    return (keyCode == KeyEvent.KEYCODE_BACK);
-                }
-            });
-        }
-    }
 
 }

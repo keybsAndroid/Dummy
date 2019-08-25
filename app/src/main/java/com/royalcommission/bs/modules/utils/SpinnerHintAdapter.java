@@ -1,10 +1,7 @@
-package com.keybs.rc.modules.utils;
+package com.royalcommission.bs.modules.utils;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
@@ -14,7 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.keybs.rc.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+
+import com.royalcommission.bs.R;
 
 import java.util.List;
 
@@ -78,7 +79,7 @@ public class SpinnerHintAdapter<T> extends ArrayAdapter<T> {
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setHint("");
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
-                view.getContext().getResources().getDimension(R.dimen.medium));
+                view.getContext().getResources().getDimension(R.dimen.text_size_medium));
 
 
         int padding = view.getContext().getResources().getDimensionPixelOffset(R.dimen.edit_text_padding);
@@ -143,7 +144,7 @@ public class SpinnerHintAdapter<T> extends ArrayAdapter<T> {
         //textView.setPadding(0, 0, 0, 0);
 
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
-                view.getContext().getResources().getDimension(R.dimen.medium));
+                view.getContext().getResources().getDimension(R.dimen.text_size_medium));
         textView.setTextColor(ContextCompat.getColor(textView.getContext(), R.color.borderColor));
         return view;
     }

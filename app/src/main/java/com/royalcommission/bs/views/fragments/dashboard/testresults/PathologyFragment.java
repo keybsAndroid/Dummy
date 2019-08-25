@@ -1,4 +1,4 @@
-package com.royalcommission.bs.views.fragments.testresults;
+package com.royalcommission.bs.views.fragments.dashboard.testresults;
 
 
 import android.os.Bundle;
@@ -37,6 +37,7 @@ import java.util.List;
 
 public class PathologyFragment extends BaseFragment implements PathologyAdapter.TestResultListener{
 
+    public static final String TAG = PathologyFragment.class.getSimpleName();
     private List<Pathology> pathologyList = new ArrayList<>();
     private PathologyAdapter pathologyAdapter;
     private TextView fromDateTextView, toDateTextView;
@@ -253,8 +254,9 @@ public class PathologyFragment extends BaseFragment implements PathologyAdapter.
                                         pathologyList.addAll(list);
                                     if (pathologyAdapter != null)
                                         pathologyAdapter.notifyDataSetChanged();
+
                                     if (pathologyList.isEmpty())
-                                        showServerError(null);
+                                        showMessageAlert(null, getString(R.string.no_results));
                                 }
                             } else {
                                 showServerError(null);

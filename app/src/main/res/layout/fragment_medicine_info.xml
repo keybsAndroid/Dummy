@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/today_medicine"
+        layout="@layout/layout_view_text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_margin_half"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="0.3"
+            android:background="@drawable/view_background"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_padding_half">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/view_margin_half"
+                    android:layout_marginTop="@dimen/view_margin"
+                    android:layout_marginEnd="@dimen/view_margin_half"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/medicine_image"
+                        android:layout_width="@dimen/doctor_profile_size"
+                        android:layout_height="@dimen/doctor_profile_size"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        app:actualImageScaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/row_title_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/text_view_margin"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/dummy_medicine"
+                        android:textColor="@color/menu_text"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/row_title_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/text_view_margin"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:text="@string/dummy_medicine_type"
+                        android:textColor="@color/menu_text"
+                        android:textSize="@dimen/text_size_medium"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:background="@drawable/view_background"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_padding_half">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/text_view_margin"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/medicine_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center"
+                        android:layout_marginTop="@dimen/text_view_margin"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:text="@string/dummy_medicine_01"
+                        android:textColor="@color/menu_text"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/medicine_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center"
+                        android:layout_marginTop="@dimen/text_view_margin"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:text="@string/dummy_medicine_type_01"
+                        android:textColor="@color/menu_text"
+                        android:textSize="@dimen/text_size_medium"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+                <include layout="@layout/view_vertical_light" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/medicine_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center"
+                        android:layout_marginTop="@dimen/text_view_margin"
+                        android:ellipsize="end"
+                        android:gravity="start"
+                        android:text="@string/dummy_medical_level"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/medicine_purpose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center"
+                        android:layout_marginTop="@dimen/text_view_margin"
+                        android:ellipsize="end"
+                        android:gravity="start"
+                        android:text="@string/dummy_pain_relief_medicine"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_medium"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/medication"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_half"
+                android:background="@color/selectButtonStartColor"
+                android:padding="@dimen/activity_padding_half"
+                android:text="@string/dummy_medication"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_medium"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/medicine_effect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_half"
+                android:layout_marginBottom="@dimen/activity_margin_half"
+                android:text="@string/dummy_medicine_effect"
+                android:textColor="@color/textColorTertiary"
+                android:textSize="@dimen/text_size_medium"
+                android:textStyle="bold" />
+
+
+            <include layout="@layout/layout_view_light_black" />
+
+            <TextView
+                android:id="@+id/medicine_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_half"
+                android:layout_marginBottom="@dimen/activity_margin_half"
+                android:text="@string/dummy_medicine_description"
+                android:textColor="@color/textColorTertiary"
+                android:textSize="@dimen/text_size_medium"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

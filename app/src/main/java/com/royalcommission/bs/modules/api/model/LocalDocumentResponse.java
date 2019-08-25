@@ -7,13 +7,13 @@ import java.util.List;
 /**
  * Created by Prashant on 12/10/2018.
  */
-public class DocumentResponse {
+public class LocalDocumentResponse {
 
     @SerializedName("CommonResponse")
     private BaseResponse baseResponse;
 
     @SerializedName("DocumentListResponse")
-    private List<Documents> documents;
+    private List<LocalDocuments> documents;
 
 
     public BaseResponse getBaseResponse() {
@@ -24,11 +24,11 @@ public class DocumentResponse {
         this.baseResponse = baseResponse;
     }
 
-    public List<Documents> getDocuments() {
+    public List<LocalDocuments> getDocuments() {
         return documents;
     }
 
-    public void setDocuments(List<Documents> documents) {
+    public void setDocuments(List<LocalDocuments> documents) {
         this.documents = documents;
     }
 }
