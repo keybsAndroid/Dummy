@@ -1,4 +1,4 @@
-package com.royalcommission.bs.views.fragments.testresults;
+package com.royalcommission.bs.views.fragments.dashboard.testresults;
 
 
 import android.content.Context;
@@ -23,7 +23,7 @@ import com.royalcommission.bs.app.AppController;
 import com.royalcommission.bs.modules.api.listener.RetrofitListener;
 import com.royalcommission.bs.modules.api.model.BaseResponse;
 import com.royalcommission.bs.modules.api.model.TestResult;
-import com.royalcommission.bs.modules.api.model.TestResultsByIDResponse;
+import com.royalcommission.bs.modules.api.model.TestResultsResponse;
 import com.royalcommission.bs.modules.api.parser.RetrofitResponseParser;
 import com.royalcommission.bs.modules.utils.CommonUtils;
 import com.royalcommission.bs.modules.utils.DateTimePickerUtil;
@@ -48,7 +48,7 @@ public class LaboratoryFragment extends BaseFragment {
     private RelativeLayout searchLayout;
     private Button threeMonthButtonIP, sixMonthButtonIP, nineMonthButtonIP, oneYearButtonIP;
     private int[] allButtonID = {R.id.three_month, R.id.six_month, R.id.nine_month, R.id.one_year};
-    private boolean isFromIP;
+    private boolean isFrom;
     private String startDate;
     private String endDate;
     private long mLastClickTime;
@@ -119,7 +119,7 @@ public class LaboratoryFragment extends BaseFragment {
                     calendar.set(Calendar.MONTH, month);
                     calendar.set(Calendar.YEAR, year);
                     String dateFormat = CommonUtils.getDateFormat(calendar);
-                    if (isFromIP) {
+                    if (isFrom) {
                         startDate = CommonUtils.getAppointmentHistoryFormat(calendar);
                         if (fromDateTextView != null)
                             fromDateTextView.setText(dateFormat);
@@ -160,13 +160,13 @@ public class LaboratoryFragment extends BaseFragment {
                         showToastMessage(getString(R.string.select_a_period));
                     }
                 } else if (viewIP.getId() == fromDatePicker.getId() || viewIP.getId() == fromDateTextView.getId()) {
-                    isFromIP = true;
+                    isFrom = true;
                     if (SystemClock.elapsedRealtime() - mFromLastClickTime < 2000)
                         return;
                     mFromLastClickTime = SystemClock.elapsedRealtime();
                     openDatePicker(dateTimeSetListenerIP, selectedMonthLimit);
                 } else if (viewIP.getId() == toDatePicker.getId() || viewIP.getId() == toDateTextView.getId()) {
-                    isFromIP = false;
+                    isFrom = false;
                     if (SystemClock.elapsedRealtime() - mToLastClickTime < 2000)
                         return;
                     mToLastClickTime = SystemClock.elapsedRealtime();
@@ -275,12 +275,15 @@ public class LaboratoryFragment extends BaseFragment {
     }
 
     private void getLaboratoryByDate(String patientID, String hospitalID, String startDate, String endDate) {
+        //yyyyMMdd
+        //startDate ="";
+        //endDate ="";
 
         processRequest(AppController.getWebService().getLaboratory(patientID, hospitalID, startDate, endDate), false, true, null, new RetrofitListener() {
             @Override
             public void onSuccess(Object object) {
                 if (object != null) {
-                    TestResultsByIDResponse testResultsResponse = RetrofitResponseParser.convertInstanceOfObject(object, TestResultsByIDResponse.class);
+                    TestResultsResponse testResultsResponse = RetrofitResponseParser.convertInstanceOfObject(object, TestResultsResponse.class);
                     if (testResultsResponse != null) {
                         BaseResponse baseResponse = testResultsResponse.getBaseResponse();
                         if (baseResponse != null) {
@@ -310,7 +313,7 @@ public class LaboratoryFragment extends BaseFragment {
             public void onError(String error) {
                 showServerError(error);
             }
-        }, TestResultsByIDResponse.class);
+        }, TestResultsResponse.class);
     }
 
 }

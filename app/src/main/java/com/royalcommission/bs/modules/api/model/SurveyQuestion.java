@@ -1,11 +1,11 @@
-package com.keybs.rc.modules.network.retrofit.model.responses;
+package com.royalcommission.bs.modules.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Prashant on 12/30/2018.
  */
-public class Question {
+public class SurveyQuestion {
     @SerializedName("Question")
     private String question;
 

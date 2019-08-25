@@ -1,4 +1,4 @@
-package com.keybs.rc.modules.network.retrofit.model.responses;
+package com.royalcommission.bs.modules.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -15,23 +15,6 @@ public class AppointmentResponse {
     @SerializedName("AppointmentResponse")
     private List<Appointment> appointmentList;
 
-    @SerializedName("EmergencyVisitModel")
-    private List<EmergencyAppointment> appointmentListEmergency;
-
-    @SerializedName("AdmissionResultModel")
-    private List<InpatientAppointment> appointmentListInpatient;
-
-    @SerializedName("AppointmentByIDResponse")
-    private Appointment updateAppointment;
-
-    public List<EmergencyAppointment> getAppointmentListEmergency() {
-        return appointmentListEmergency;
-    }
-
-    public void setAppointmentListEmergency(List<EmergencyAppointment> appointmentListEmergency) {
-        this.appointmentListEmergency = appointmentListEmergency;
-    }
-
     public BaseResponse getBaseResponse() {
         return baseResponse;
     }
@@ -46,21 +29,5 @@ public class AppointmentResponse {
 
     public void setAppointmentList(List<Appointment> appointmentList) {
         this.appointmentList = appointmentList;
-    }
-
-    public Appointment getUpdateAppointment() {
-        return updateAppointment;
-    }
-
-    public void setUpdateAppointment(Appointment updateAppointment) {
-        this.updateAppointment = updateAppointment;
-    }
-
-    public List<InpatientAppointment> getAppointmentListInpatient() {
-        return appointmentListInpatient;
-    }
-
-    public void setAppointmentListInpatient(List<InpatientAppointment> appointmentListInpatient) {
-        this.appointmentListInpatient = appointmentListInpatient;
     }
 }

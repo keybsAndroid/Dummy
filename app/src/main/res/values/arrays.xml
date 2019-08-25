@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sub_menu">
+        <item>Today’s Medicine</item>
+        <item>Today’s Medical Test</item>
+        <item>Meal Information</item>
+        <item>Physician Rounding</item>
+        <item>Nurse Information </item>
+        <item>Education Information </item>
+    </string-array>
+    <string-array name="hosp_guide_menu">
+        <item>Admission Info</item>
+        <item>Discharge Information</item>
+        <item>Hospital Info</item>
+        <item>Surveys &amp; Suggestions</item>
+    </string-array>
+    <string-array name="menu_arrays">
+        <item>Patient / Caregive Meal</item>
+        <item>Medical Document Requests</item>
+        <!--<item>Convenience Service Requests</item>-->
+        <item>Medical Test Results</item>
+        <item>Operation Information</item>
+        <item>Billing Statement</item>
+        <item>Outpatient Information</item>
+        <item>Inpatient Information</item>
+        <item>Discharge Medication</item>
+    </string-array>
+    <string-array name="doctor_dashboard_arrays">
+        <item>Vital Information</item>
+        <item>Prescription Order</item>
+        <!--<item>Clinical Pathology</item>-->
+        <item>Function Examination</item>
+    </string-array>
+    <string-array name="meals_selection_arrays">
+        <item>Caregiver</item>
+        <item>Patient</item>
+    </string-array>
+    <string-array name="find_account_type">
+        <item>Email</item>
+        <item>Mobile Number</item>
+    </string-array>
+</resources>

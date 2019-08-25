@@ -4,13 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.CheckBox;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.royalcommission.bs.R;
+import com.royalcommission.bs.modules.api.model.LocalDocuments;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -19,37 +19,51 @@ import java.util.List;
 /**
  * Created by Prashant on 7/3/2018.
  */
-public class DashBoardGridViewAdapter extends RecyclerView.Adapter<DashBoardGridViewAdapter.ViewHolder> {
+public class CheckBoxAdapter extends RecyclerView.Adapter<CheckBoxAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
-    private List<String> mMenuList;
+    private List<LocalDocuments> mDocumentList;
     private ClickListener mClickListener;
-
-    private int[] imageResources = {R.drawable.ic_patient_caregive_meal, R.drawable.ic_medical_document_requests,
-            R.drawable.ic_convenience_requests, R.drawable.ic_medical_test_result, R.drawable.ic_operation_info,
-            R.drawable.ic_billing_statement, R.drawable.ic_outpatient_info, R.drawable.ic_inpatient_info};
+    private int clickedPosition = -1;
 
 
-    public DashBoardGridViewAdapter(Context context, List<String> menuList, ClickListener clickListener) {
-        mMenuList = menuList;
+    public CheckBoxAdapter(Context context, List<LocalDocuments> menuList, ClickListener clickListener) {
+        mDocumentList = menuList;
         inflater = (LayoutInflater.from(context));
         mClickListener = clickListener;
     }
 
     @NonNull
     @Override
-    public DashBoardGridViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.item_grid, null);
+    public CheckBoxAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.item_check_box, null);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NotNull DashBoardGridViewAdapter.ViewHolder holder, int position) {
-        holder.textView.setText(mMenuList.get(holder.getAdapterPosition()));
-        if (holder.getAdapterPosition() < imageResources.length)
-            holder.imageView.setImageResource(imageResources[holder.getAdapterPosition()]);
-        else
-            holder.imageView.setImageResource(android.R.color.transparent);
+    public void onBindViewHolder(@NotNull CheckBoxAdapter.ViewHolder holder, int position) {
+        LocalDocuments localDocuments = mDocumentList.get(holder.getAdapterPosition());
+        holder.checkBox.setText(localDocuments.getDocumentName());
+        holder.checkBox.setOnClickListener(v -> {
+            clickedPosition = position;
+            mClickListener.onClick(position);
+            notifyDataSetChanged();
+        });
+        updateCheckedStatus(holder, clickedPosition);
+    }
+
+    private void updateCheckedStatus(CheckBoxAdapter.ViewHolder holder, int clickedPosition) {
+        if (holder != null && clickedPosition != -1) {
+            holder.checkBox.post(() -> {
+                if (holder.getAdapterPosition() == clickedPosition) {
+                    holder.checkBox.toggle();
+                    holder.checkBox.jumpDrawablesToCurrentState();
+                } else {
+                    holder.checkBox.setChecked(false);
+                    holder.checkBox.jumpDrawablesToCurrentState();
+                }
+            });
+        }
     }
 
     @Override
@@ -59,22 +73,15 @@ public class DashBoardGridViewAdapter extends RecyclerView.Adapter<DashBoardGrid
 
     @Override
     public int getItemCount() {
-        return mMenuList.size();
+        return mDocumentList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imageView;
-        private TextView textView;
+        private CheckBox checkBox;
 
         public ViewHolder(View view) {
             super(view);
-            imageView = view.findViewById(R.id.grid_image);
-            textView = view.findViewById(R.id.grid_title);
-            view.setOnClickListener(v -> {
-                if (mClickListener != null) {
-                    mClickListener.onClick(getAdapterPosition());
-                }
-            });
+            checkBox = view.findViewById(R.id.check_box);
         }
     }
 

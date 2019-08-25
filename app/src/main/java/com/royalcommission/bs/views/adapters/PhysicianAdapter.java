@@ -19,26 +19,27 @@ import java.util.List;
 /**
  * Created by Prashant on 7/3/2018.
  */
-public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder> {
+public class PhysicianAdapter extends RecyclerView.Adapter<PhysicianAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
     private List<String> nurseList;
 
-    public DoctorAdapter(Context context, List<String> menuList) {
+    public PhysicianAdapter(Context context, List<String> menuList) {
         nurseList = menuList;
         inflater = (LayoutInflater.from(context));
     }
 
     @NonNull
     @Override
-    public DoctorAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PhysicianAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.item_grid_doctor, null);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NotNull DoctorAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NotNull PhysicianAdapter.ViewHolder holder, int position) {
         holder.textView.setText(nurseList.get(holder.getAdapterPosition()));
+        holder.imageView.setImageResource(R.drawable.ic_doctor_svg);
     }
 
     @Override

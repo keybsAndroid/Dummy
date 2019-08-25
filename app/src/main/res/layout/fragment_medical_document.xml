@@ -1,14 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.fragments.MedicalDocumentFragment">
+    android:background="@drawable/screen_background_corner">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/activity_margin_large"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/activity_margin_half"
+            android:layout_marginBottom="@dimen/activity_margin_half"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/view_margin_half"
+                android:gravity="center"
+                android:text="@string/medical_document"
+                android:textColor="@color/black"
+                android:textDirection="locale"
+                android:textSize="@dimen/text_size_large" />
+
+            <include layout="@layout/layout_border" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/document_request"
+                android:layout_width="@dimen/card_view_size"
+                android:layout_height="@dimen/card_view_size"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/activity_margin_half"
+                android:background="@drawable/background_gradient_primary"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="@dimen/document_image_size"
+                    android:layout_height="@dimen/document_image_size"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:src="@drawable/ic_medical_document_request" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/activity_margin_half"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="@string/document_request"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textDirection="locale"
+                    android:textSize="@dimen/text_size_normal"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/document_status"
+                android:layout_width="@dimen/card_view_size"
+                android:layout_height="@dimen/card_view_size"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/activity_margin_half"
+                android:background="@drawable/background_gradient_primary"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="@dimen/document_image_size"
+                    android:layout_height="@dimen/document_image_size"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:src="@drawable/ic_document_status" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/activity_margin_half"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="@string/document_status"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textDirection="locale"
+                    android:textSize="@dimen/text_size_normal"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -8,13 +8,13 @@ import java.util.List;
 /**
  * Created by Prashant on 12/17/2018.
  */
-public class DocumentResponse {
+public class OperationInfoResponse {
 
     @SerializedName("CommonResponse")
     private BaseResponse baseResponse;
 
-    @SerializedName("DocumentResponse")
-    private List<Document> documentList;
+    @SerializedName("OperationInformationResponse")
+    private List<OperationInfo> operationInfoList;
 
     public BaseResponse getBaseResponse() {
         return baseResponse;
@@ -24,11 +24,11 @@ public class DocumentResponse {
         this.baseResponse = baseResponse;
     }
 
-    public List<Document> getDocumentList() {
-        return documentList;
+    public List<OperationInfo> getOperationInfoList() {
+        return operationInfoList;
     }
 
-    public void setDocumentList(List<Document> documentList) {
-        this.documentList = documentList;
+    public void setOperationInfoList(List<OperationInfo> operationInfoList) {
+        this.operationInfoList = operationInfoList;
     }
 }

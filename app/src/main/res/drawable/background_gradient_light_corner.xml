@@ -4,10 +4,9 @@
 
     <gradient
         android:angle="0"
-        android:centerColor="@color/primary_gradient_dark"
-        android:centerX="49%"
+        android:centerColor="@color/primary_gradient_light"
         android:endColor="@color/primary_gradient_light"
-        android:startColor="@color/primary_gradient_dark"
+        android:startColor="@color/primary_gradient_light"
         android:type="linear" />
 
     <corners

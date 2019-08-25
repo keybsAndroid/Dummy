@@ -3,37 +3,121 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/activity_margin"
-    android:background="@android:color/transparent"
-    android:minHeight="@dimen/alert_dialog_min_height">
+    android:background="@android:color/transparent">
 
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="@dimen/activity_margin"
-        android:orientation="vertical">
+        android:background="@android:color/white">
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:indeterminate="true"
-            android:theme="@style/LinearProgress" />
-
-
-        <TextView
-            android:id="@+id/loader_message"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/activity_margin_half"
-            android:gravity="center"
-            android:text="@string/logging_in"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_large" />
-    </LinearLayout>
+            android:background="@android:color/white"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/password_login"
+                android:layout_width="@dimen/login_form_size"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_margin_half"
+                android:animateLayoutChanges="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/login_form_margin"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <include
+                        android:id="@+id/title_layout"
+                        layout="@layout/layout_view_text" />
+
+                    <!--Login Layout-->
+                    <LinearLayout
+                        android:id="@+id/login_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/activity_margin_half"
+                            android:layout_marginBottom="@dimen/activity_margin_half"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/TextAppearance.TextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/activity_margin_half"
+                                android:text="@string/enter_physician_doctor_id"
+                                android:textColor="@color/black" />
+
+                            <EditText
+                                android:id="@+id/doctor_id"
+                                style="@style/TextAppearance.EditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/enter_physician_doctor_id"
+                                android:imeOptions="actionNext"
+                                android:inputType="text|number"
+                                android:textColor="@color/textColorTertiary" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_margin_half"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/TextAppearance.TextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/activity_margin_half"
+                                android:text="@string/password"
+                                android:textColor="@color/black" />
+
+                            <EditText
+                                android:id="@+id/password"
+                                style="@style/TextAppearance.EditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/password"
+                                android:imeOptions="actionDone"
+                                android:inputType="textPassword"
+                                android:textColor="@color/textColorTertiary" />
+
+                        </LinearLayout>
+
+
+                        <Button
+                            android:id="@+id/login"
+                            style="@style/Button.Login"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:minHeight="@dimen/editTextHeight"
+                            android:text="@string/Login"
+                            android:textAllCaps="true" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
 </RelativeLayout>

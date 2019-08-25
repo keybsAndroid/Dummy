@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/screenBg"
-    tools:context=".views.fragments.verification.VerificationFragment">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/copy_rights"
         android:orientation="vertical">
 
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/nested_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -27,60 +23,50 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-
-                    <include
-                        android:id="@+id/banner"
-                        layout="@layout/layout_banner"
-                        android:visibility="gone" />
-
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/activity_horizontal_margin"
+                        android:layout_margin="@dimen/activity_margin"
                         android:orientation="vertical">
 
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                            android:background="@color/white"
+                            android:layout_marginBottom="@dimen/activity_margin"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_marginStart="@dimen/activity_horizontal_margin_medium"
-                                android:layout_marginTop="@dimen/activity_horizontal_margin_medium"
-                                android:layout_marginEnd="@dimen/activity_horizontal_margin_medium"
-                                android:gravity="start"
+                                android:layout_marginStart="@dimen/activity_margin_half"
+                                android:layout_marginTop="@dimen/activity_margin_half"
+                                android:layout_marginEnd="@dimen/activity_margin_half"
+                                android:gravity="center"
                                 android:text="@string/verification_code"
-                                android:textAlignment="viewStart"
                                 android:textColor="@color/colorPrimaryText"
                                 android:textDirection="anyRtl"
-                                android:textSize="@dimen/xxlarge"
+                                android:textSize="@dimen/text_size_large"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_margin="@dimen/activity_horizontal_margin"
-                                android:gravity="start|center"
+                                android:layout_margin="@dimen/activity_margin"
+                                android:gravity="center"
                                 android:text="@string/verification_code_content"
-                                android:textAlignment="viewStart"
                                 android:textColor="@color/colorSecondaryText"
                                 android:textDirection="anyRtl"
-                                android:textSize="@dimen/large" />
+                                android:textSize="@dimen/text_size_large" />
 
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/activity_horizontal_margin_medium"
-                                android:layout_marginBottom="@dimen/activity_horizontal_margin_medium"
+                                android:layout_marginTop="@dimen/activity_margin_half"
+                                android:layout_marginBottom="@dimen/activity_margin_half"
                                 android:orientation="vertical">
 
                                 <EditText
@@ -88,8 +74,8 @@
                                     android:layout_width="150dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:layout_marginStart="@dimen/activity_horizontal_inner_margin_medium"
-                                    android:layout_marginEnd="@dimen/activity_horizontal_inner_margin_medium"
+                                    android:layout_marginStart="@dimen/activity_margin_half"
+                                    android:layout_marginEnd="@dimen/activity_margin_half"
                                     android:background="@drawable/rectangular_border_corner"
                                     android:gravity="start|center"
                                     android:imeOptions="actionDone"
@@ -100,16 +86,16 @@
                                     android:paddingEnd="@dimen/padding_medium"
                                     android:textAlignment="viewStart"
                                     android:textDirection="anyRtl"
-                                    android:textSize="@dimen/medium" />
+                                    android:textSize="@dimen/text_size_medium" />
 
                                 <Button
                                     android:id="@+id/find"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="300dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:layout_marginStart="@dimen/activity_horizontal_inner_margin_medium"
-                                    android:layout_marginTop="@dimen/activity_horizontal_inner_margin_medium"
-                                    android:layout_marginEnd="@dimen/activity_horizontal_inner_margin_medium"
+                                    android:layout_marginStart="@dimen/activity_margin"
+                                    android:layout_marginTop="@dimen/activity_margin"
+                                    android:layout_marginEnd="@dimen/activity_margin"
                                     android:background="@drawable/button_secondary"
                                     android:clickable="true"
                                     android:focusable="true"
@@ -118,38 +104,40 @@
                                     android:minHeight="@dimen/edit_text_min_height"
                                     android:text="@string/confirm"
                                     android:textColor="@color/white"
-                                    android:textSize="@dimen/medium" />
+                                    android:textSize="@dimen/text_size_medium" />
 
                                 <Button
                                     android:id="@+id/resend"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="300dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:layout_marginStart="@dimen/activity_horizontal_inner_margin_medium"
-                                    android:layout_marginTop="@dimen/activity_horizontal_inner_margin_medium"
-                                    android:layout_marginEnd="@dimen/activity_horizontal_inner_margin_medium"
+                                    android:layout_marginStart="@dimen/activity_margin"
+                                    android:layout_marginTop="@dimen/activity_margin"
+                                    android:layout_marginEnd="@dimen/activity_margin"
                                     android:background="@drawable/button_primary"
                                     android:clickable="true"
                                     android:focusable="true"
                                     android:foreground="?selectableItemBackground"
                                     android:gravity="center"
-                                    android:visibility="gone"
                                     android:minHeight="@dimen/edit_text_min_height"
                                     android:text="@string/request_code_again"
                                     android:textColor="@color/white"
-                                    android:textSize="@dimen/medium" />
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:visibility="gone" />
 
                             </LinearLayout>
 
 
-                            <include layout="@layout/layout_view_bg" />
+                            <include
+                                layout="@layout/layout_view_bg"
+                                android:visibility="gone" />
 
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_marginTop="@dimen/activity_horizontal_margin_medium"
+                                android:layout_marginTop="@dimen/activity_margin_half"
                                 android:gravity="center"
                                 android:src="@drawable/ic_timer" />
 
@@ -159,46 +147,33 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_margin="@dimen/activity_horizontal_margin_medium"
+                                android:layout_margin="@dimen/activity_margin_half"
                                 android:gravity="center"
                                 android:textColor="@color/colorSecondaryText"
                                 android:textDirection="locale"
-                                android:textSize="@dimen/large"
+                                android:textSize="@dimen/text_size_large"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_margin="@dimen/activity_horizontal_margin_medium"
+                                android:layout_margin="@dimen/activity_margin_half"
                                 android:gravity="center"
                                 android:text="@string/timer_content"
                                 android:textColor="@color/colorSecondaryText"
                                 android:textDirection="anyRtl"
-                                android:textSize="@dimen/medium" />
+                                android:textSize="@dimen/text_size_medium" />
 
 
-                            <include layout="@layout/layout_view_bg" />
-
-
+                            <include android:visibility="gone"  layout="@layout/layout_view_bg" />
                         </LinearLayout>
-
                     </LinearLayout>
-
-
                 </LinearLayout>
 
             </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
-
-
-    <include
-        android:id="@+id/copy_rights"
-        layout="@layout/layout_copy_rights"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

@@ -1,11 +1,9 @@
-package com.keybs.rc.views.fragments.dialog;
+package com.royalcommission.bs.views.fragments.login;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.method.DigitsKeyListener;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +12,21 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.keybs.rc.R;
-import com.keybs.rc.app.AppController;
-import com.keybs.rc.modules.network.listener.RetrofitListener;
-import com.keybs.rc.modules.network.retrofit.model.responses.BaseResponse;
-import com.keybs.rc.modules.network.retrofit.model.responses.LoginResponse;
-import com.keybs.rc.modules.network.retrofit.parser.RetrofitResponseParser;
-import com.keybs.rc.modules.utils.CommonUtils;
-import com.keybs.rc.modules.utils.Constants;
-import com.keybs.rc.modules.utils.SpinnerHintAdapter;
-import com.keybs.rc.views.customviews.SpinnerHint;
-import com.keybs.rc.views.fragments.base.BaseDialogFragment;
-import com.keybs.rc.views.fragments.verification.VerificationFragment;
+import androidx.annotation.Nullable;
+
+import com.royalcommission.bs.R;
+import com.royalcommission.bs.app.AppController;
+import com.royalcommission.bs.modules.api.listener.RetrofitListener;
+import com.royalcommission.bs.modules.api.model.BaseResponse;
+import com.royalcommission.bs.modules.api.model.LoginResponse;
+import com.royalcommission.bs.modules.api.parser.RetrofitResponseParser;
+import com.royalcommission.bs.modules.utils.CommonUtils;
+import com.royalcommission.bs.modules.utils.Constants;
+import com.royalcommission.bs.modules.utils.SpinnerHint;
+import com.royalcommission.bs.modules.utils.SpinnerHintAdapter;
+import com.royalcommission.bs.views.dialogs.BaseDialogFragment;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +44,7 @@ public class FindYourIDFragment extends BaseDialogFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NotNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.find_your_id_dialog, null);
         emailPhone = view.findViewById(R.id.email_phone);
         findIDTypeSpinner = view.findViewById(R.id.finding_type_spin);
@@ -125,7 +126,8 @@ public class FindYourIDFragment extends BaseDialogFragment {
     }
 
     private void getPatientIDFromEmailPhone(Observable<Object> observable, int idType) {
-        processGETRequest(false, null, true, observable, new RetrofitListener() {
+
+        processRequest(observable, false, true, null, new RetrofitListener() {
             @Override
             public void onSuccess(Object object) {
                 if (object != null) {
@@ -150,33 +152,20 @@ public class FindYourIDFragment extends BaseDialogFragment {
                             }
                         } else {
                             closeDialogFragment();
-                            showAPIError();
+                            showServerError(null);
                         }
                     } else {
-                        showAPIError();
+                        showServerError(null);
                     }
                 }
             }
 
             @Override
-            public void onSuccess(List<Object> object) {
-                Log.d("Login", "Success: " + object);
-            }
-
-            @Override
             public void onError(String error) {
                 closeDialogFragment();
-                Log.d("Login", "onError: " + error);
+                showServerError(null);
             }
-        });
-    }
+        }, LoginResponse.class);
 
-    private void screenMoveToOTPScreen(String numberFromString) {
-        Bundle bundle = new Bundle();
-        bundle.putString(VERIFICATION_FRAGMENT_BUNDLE_KEY_OTP, numberFromString);
-        VerificationFragment verificationFragment = VerificationFragment.newInstance(bundle);
-        verificationFragment.setPageFrom(Constants.FIND_YOUR_ID);
-        if (getActivity() != null)
-            verificationFragment.show(getActivity().getSupportFragmentManager(), "");
     }
 }

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/patient_information_min_height"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/view_margin_half"
+            android:layout_weight="0.4"
+            android:background="@color/white"
+            android:elevation="@dimen/card_elevation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/view_margin_half"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/title_information"
+                    layout="@layout/layout_view_text" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/view_margin_half"
+                    android:layout_marginTop="@dimen/view_margin"
+                    android:layout_marginEnd="@dimen/view_margin_half"
+                    android:layout_marginBottom="@dimen/view_margin_half"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/view_margin_half"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/patient_name_label"
+                            style="@style/TextAppearance.TextViewPatientLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/patient_name" />
+
+                        <TextView
+                            android:id="@+id/patient_name"
+                            style="@style/TextAppearance.TextViewPatientValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/patient_name_dummy" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/view_margin_half"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/ward_number_label"
+                            style="@style/TextAppearance.TextViewPatientLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ward_number" />
+
+                        <TextView
+                            android:id="@+id/ward_number"
+                            style="@style/TextAppearance.TextViewPatientValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ward_number_dummy" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/view_margin_half"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/room_number_label"
+                            style="@style/TextAppearance.TextViewPatientLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/room_number" />
+
+                        <TextView
+                            android:id="@+id/room_number"
+                            style="@style/TextAppearance.TextViewPatientValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/room_number_dummy" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/view_margin_half"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/address_label"
+                            style="@style/TextAppearance.TextViewPatientLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/address" />
+
+                        <TextView
+                            android:id="@+id/address"
+                            style="@style/TextAppearance.TextViewPatientValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/address_dummy" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/view_margin_half"
+            android:layout_weight="0.2"
+            android:background="@color/white"
+            android:elevation="@dimen/card_elevation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/view_margin_half"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/title_profile"
+                    layout="@layout/layout_view_text" />
+
+                <ImageView
+                    android:id="@+id/patient_profile"
+                    android:layout_width="@dimen/profile_size"
+                    android:layout_height="@dimen/profile_size"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/view_margin"
+                    android:layout_marginBottom="@dimen/view_margin_half"
+                    android:adjustViewBounds="true"
+                    android:background="@color/colorAccent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/arab_profile_picture" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:background="@color/white"
+            android:elevation="@dimen/card_elevation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/view_margin_half"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/title_video"
+                    layout="@layout/layout_view_text" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/patient_videos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/view_margin"
+                    android:background="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

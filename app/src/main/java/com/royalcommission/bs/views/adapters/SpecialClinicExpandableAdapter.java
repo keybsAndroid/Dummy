@@ -1,19 +1,20 @@
-package com.keybs.rc.views.adapters.general;
+package com.royalcommission.bs.views.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.keybs.rc.R;
-import com.keybs.rc.modules.network.retrofit.model.responses.SpecialClinicDetail;
-import com.keybs.rc.modules.utils.CommonUtils;
-import com.keybs.rc.modules.utils.DateUtils;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.royalcommission.bs.R;
+import com.royalcommission.bs.modules.api.model.SpecialClinicDetail;
+import com.royalcommission.bs.modules.utils.CommonUtils;
+import com.royalcommission.bs.modules.utils.DateUtils;
 
 import org.sufficientlysecure.htmltextview.HtmlTextView;
 
@@ -50,16 +51,12 @@ public class SpecialClinicExpandableAdapter extends RecyclerView.Adapter<Special
             if (CommonUtils.isValidString(clinicDetail.getName()))
                 holder.requestDetailName.setText(clinicDetail.getName());
 
-            /*if (CommonUtils.isValidString(clinicDetail.getOrderId()))
-                holder.requestDetailName.setText(clinicDetail.getOrderId());*/
-
             if (CommonUtils.isValidString(clinicDetail.getResult()))
                 holder.result.setHtml(clinicDetail.getResult());
             else
-                holder.result.setHtml(context.getString(R.string.hypen));
+                holder.result.setHtml(context.getString(R.string.hyphen));
 
             if (CommonUtils.isValidString(clinicDetail.getDate())) {
-                //holder.date.setText(DateUtils.getDateTime(clinicDetail.getDate()));
                 holder.requestDate.setText(DateUtils.getDateTime(clinicDetail.getDate(), false));
             }
 
@@ -107,10 +104,10 @@ public class SpecialClinicExpandableAdapter extends RecyclerView.Adapter<Special
             if (view.getId() == parentView.getId() || view.getId() == rightArrow.getId()) {
                 if (!isExpanded) {
                     isExpanded = true;
-                    rightArrow.setImageResource(R.drawable.ic_chevron_down_grey600_36dp);
+                    rightArrow.setImageResource(R.drawable.outline_keyboard_arrow_down_black_24);
                 } else {
                     isExpanded = false;
-                    rightArrow.setImageResource(R.drawable.ic_chevron_right_grey600_36dp_auto_mirror);
+                    rightArrow.setImageResource(R.drawable.arrow_right_24_auto_mirror);
                 }
                 childView.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
             }

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/menu_recycler_view"
+        android:layout_width="@dimen/sub_menu_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="@dimen/activity_margin_half"
+        android:background="@drawable/background_gradient_dark_corner"
+        android:layoutAnimation="@anim/layout_animation_from_right"
+        android:scrollbars="vertical" />
+
+    <LinearLayout
+        android:id="@+id/today_tasks_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="@dimen/activity_margin_half"
+        android:layout_marginBottom="@dimen/activity_margin_half"
+        android:layout_toEndOf="@+id/menu_recycler_view"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/my_page"
+            android:layout_width="@dimen/today_task_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/screen_background_corner"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:minHeight="@dimen/dashBoardButtonHeight"
+                android:paddingStart="@dimen/activity_padding_half"
+                android:paddingEnd="@dimen/activity_padding_half"
+                android:text="@string/today_tasks"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_normal" />
+
+            <include layout="@layout/layout_view_bg" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/today_task_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="@dimen/line_view_margin"
+                android:layoutAnimation="@anim/layout_animation_from_right"
+                android:scrollbars="vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/hospital_guide"
+            android:layout_width="@dimen/hospital_guide_width"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/hospital_guide_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="@dimen/line_view_margin"
+                android:layoutAnimation="@anim/layout_animation_from_right"
+                android:scrollbars="vertical" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/today_tasks_layout">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/dash_board_buttons"
+            android:layout_marginStart="@dimen/view_margin"
+            android:layout_marginEnd="@dimen/view_margin"
+            android:layout_marginBottom="@dimen/view_margin"
+            android:background="@drawable/screen_background_corner" />
+
+        <LinearLayout
+            android:id="@+id/dash_board_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/nurse_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/view_margin_small"
+                android:layout_weight="0.8"
+                android:background="@drawable/button_secondary"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground">
+
+                <TextView
+                    android:id="@+id/nurse"
+                    style="@style/TextAppearance.DashBoardPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:drawableStart="@drawable/ic_nurse_call"
+                    android:drawablePadding="@dimen/padding_medium"
+                    android:gravity="center"
+                    android:text="@string/nurse_call"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/physician_rounding_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/view_margin_small"
+                android:layout_weight="1.1"
+                android:background="@drawable/button_primary"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground">
+
+                <TextView
+                    android:id="@+id/physician_rounding"
+                    style="@style/TextAppearance.DashBoardSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:drawableStart="@drawable/ic_doctor_rounding"
+                    android:drawablePadding="@dimen/padding_medium"
+                    android:gravity="center"
+                    android:text="@string/physician_rounding" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/doctor_nurse_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/view_margin_small"
+                android:layout_weight="1.1"
+                android:background="@drawable/button_primary"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground">
+
+                <TextView
+                    android:id="@+id/doctor_nurse"
+                    style="@style/TextAppearance.DashBoardSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:drawableStart="@drawable/ic_doctor_nurse_assign"
+                    android:drawablePadding="@dimen/padding_medium"
+                    android:gravity="center"
+                    android:text="@string/doctor_nurse_assign" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

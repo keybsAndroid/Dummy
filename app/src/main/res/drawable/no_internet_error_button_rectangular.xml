@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item>
+        <shape android:thickness="@dimen/rectangular_border_thickness" android:shape="rectangle">
+            <solid android:color="@color/noNetworkErrorOrange" />
+            <corners android:radius="@dimen/no_internet_error_button_radius"/>
+        </shape>
+    </item>
+</selector>

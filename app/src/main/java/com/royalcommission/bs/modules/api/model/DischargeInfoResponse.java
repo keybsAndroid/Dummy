@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class InpatientResponse {
+public class DischargeInfoResponse {
 
     @SerializedName("CommonResponse")
     private BaseResponse baseResponse;
 
-    @SerializedName("AdmissionResultModel")
-    private List<InpatientInfo> inpatientInfoList;
+    @SerializedName("DischargesInformationModel")
+    private List<DischargeInfo> dischargeInfoList;
 
     public BaseResponse getBaseResponse() {
         return baseResponse;
@@ -20,11 +20,11 @@ public class InpatientResponse {
         this.baseResponse = baseResponse;
     }
 
-    public List<InpatientInfo> getInpatientInfoList() {
-        return inpatientInfoList;
+    public List<DischargeInfo> getDischargeInfoList() {
+        return dischargeInfoList;
     }
 
-    public void setInpatientInfoList(List<InpatientInfo> inpatientInfoList) {
-        this.inpatientInfoList = inpatientInfoList;
+    public void setDischargeInfoList(List<DischargeInfo> dischargeInfoList) {
+        this.dischargeInfoList = dischargeInfoList;
     }
 }

@@ -1,82 +1,51 @@
 package com.royalcommission.bs.modules.api.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Prashant on 12/17/2018.
  */
-public class Document {
+public class RequestedDocumentStatus {
 
-    private String AppointmentId;
-    private String DocumentName;
-    private String FormName;
-    private int FormId;
-    private int MedicalRecordId;
-    private String DownloadUrl;
-    private String DocumentDate;
-    private String Base64;
+    @SerializedName("Doc_Name")
+    private String name;
+    @SerializedName("DocumentStatus")
+    private String status;
+    @SerializedName("RequestedDate")
+    private String date;
 
+    @SerializedName("Doc_ID")
+    private String id;
 
-    public String getAppointmentId() {
-        return AppointmentId;
+    public String getName() {
+        return name;
     }
 
-    public void setAppointmentId(String appointmentId) {
-        AppointmentId = appointmentId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDocumentName() {
-        return DocumentName;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDocumentName(String documentName) {
-        DocumentName = documentName;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-
-    public String getDownloadUrl() {
-        return DownloadUrl;
+    public String getDate() {
+        return date;
     }
 
-    public void setDownloadUrl(String downloadUrl) {
-        DownloadUrl = downloadUrl;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getDocumentDate() {
-        return DocumentDate;
+    public String getId() {
+        return id;
     }
 
-    public void setDocumentDate(String documentDate) {
-        DocumentDate = documentDate;
-    }
-
-    public String getBase64() {
-        return Base64;
-    }
-
-    public void setBase64(String base64) {
-        Base64 = base64;
-    }
-
-    public int getFormId() {
-        return FormId;
-    }
-
-    public void setFormId(int formId) {
-        FormId = formId;
-    }
-
-    public int getMedicalRecordId() {
-        return MedicalRecordId;
-    }
-
-    public void setMedicalRecordId(int medicalRecordId) {
-        MedicalRecordId = medicalRecordId;
-    }
-
-    public String getFormName() {
-        return FormName;
-    }
-
-    public void setFormName(String formName) {
-        FormName = formName;
+    public void setId(String id) {
+        this.id = id;
     }
 }

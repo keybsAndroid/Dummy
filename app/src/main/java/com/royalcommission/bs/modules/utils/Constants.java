@@ -1,16 +1,24 @@
-package com.keybs.rc.modules.utils;
+package com.royalcommission.bs.modules.utils;
 
 /**
  * Created by Prashant on 7/18/2018.
  */
 public class Constants {
 
+    public static final String NOTIFICATION = "Notification";
+    public static final String IN_PATIENT_CATEGORY = "I";
     public static final String SERVICE_NUMBER = "";
     public static final String SERVICE_CONDITION = "";
     public static final String OTP_DELIMITER = ":";
     public static final String BROADCAST_INDOOR = "BROADCAST_INDOOR";
-    public static int NUMBER_OF_COLUMNS = 2;
-    public static int NUMBER_OF_CALENDAR_COLUMNS = 7;
+    public static final String TV_PACKAGE = "com.Pad.tvapp";
+    public static int NUMBER_OF_CHECKBOX_COLUMNS = 3;
+    public static int NUMBER_OF_COLUMNS = 4;
+    public static int NUMBER_OF_DOCTOR_DASHBOARD_COLUMNS = 2;
+    public static int NUMBER_OF_MEALS_SELECTION_COLUMNS = 2;
+    public static int NUMBER_OF_MEALS_COLUMNS = 3;
+    public static int NUMBER_OF_TODAY_MEDICINE_COLUMNS = 5;
+    public static int NUMBER_OF_APPOINTMENT_COLUMNS = 5;
     public static long OTP_COUNT_DOWN_TIMER_DEFAULT_VALUE = 10 * 60 * 1000;
     public static long COUNT_DOWN_TIMER_INTERVAL = 1000;
     public static final String OPEN_NEW_FILE = "NEW_FILE";

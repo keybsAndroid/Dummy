@@ -19,35 +19,27 @@ import java.util.List;
 /**
  * Created by Prashant on 7/3/2018.
  */
-public class DashBoardGridViewAdapter extends RecyclerView.Adapter<DashBoardGridViewAdapter.ViewHolder> {
+public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
-    private List<String> mMenuList;
+    private List<String> nurseList;
 
-    private int[] imageResources = {R.drawable.ic_patient_caregive_meal, R.drawable.ic_medical_document_requests,
-            R.drawable.ic_convenience_requests, R.drawable.ic_medical_test_result, R.drawable.ic_operation_info,
-            R.drawable.ic_billing_statement, R.drawable.ic_outpatient_info, R.drawable.ic_inpatient_info};
-
-
-    public DashBoardGridViewAdapter(Context context, List<String> menuList) {
-        mMenuList = menuList;
+    public NurseAdapter(Context context, List<String> menuList) {
+        nurseList = menuList;
         inflater = (LayoutInflater.from(context));
     }
 
     @NonNull
     @Override
-    public DashBoardGridViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.item_grid, null);
+    public NurseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.item_grid_nurse, null);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NotNull DashBoardGridViewAdapter.ViewHolder holder, int position) {
-        holder.textView.setText(mMenuList.get(holder.getAdapterPosition()));
-        if (holder.getAdapterPosition() < imageResources.length)
-            holder.imageView.setImageResource(imageResources[holder.getAdapterPosition()]);
-        else
-            holder.imageView.setImageResource(android.R.color.transparent);
+    public void onBindViewHolder(@NotNull NurseAdapter.ViewHolder holder, int position) {
+        holder.textView.setText(nurseList.get(holder.getAdapterPosition()));
+        holder.imageView.setImageResource(R.drawable.ic_nurse_svg);
     }
 
     @Override
@@ -57,7 +49,7 @@ public class DashBoardGridViewAdapter extends RecyclerView.Adapter<DashBoardGrid
 
     @Override
     public int getItemCount() {
-        return mMenuList.size();
+        return nurseList == null ? 0 : nurseList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

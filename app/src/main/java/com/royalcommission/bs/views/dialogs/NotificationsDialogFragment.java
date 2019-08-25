@@ -1,4 +1,4 @@
-package com.royalcommission.bs.views.fragments.dashboard.documents;
+package com.royalcommission.bs.views.dialogs;
 
 
 import android.app.Dialog;
@@ -14,15 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.royalcommission.bs.R;
-import com.royalcommission.bs.modules.utils.CommonUtils;
-import com.royalcommission.bs.modules.utils.Constants;
-import com.royalcommission.bs.modules.utils.GridSpacingItemDecoration;
-import com.royalcommission.bs.views.adapters.PhysicianAdapter;
-import com.royalcommission.bs.views.dialogs.BaseDialogFragment;
+import com.royalcommission.bs.modules.api.model.NotificationMessages;
+import com.royalcommission.bs.views.adapters.NotificationsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,21 +27,21 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PhysicianRoundingDialogFragment extends BaseDialogFragment implements View.OnClickListener {
+public class NotificationsDialogFragment extends BaseDialogFragment implements View.OnClickListener {
 
     private AlertDialog alertDialog;
     private long lastClickedTime;
 
-    private static List<String> doctorList = new ArrayList<>();
+    private static List<NotificationMessages> notificationMessages = new ArrayList<>();
 
-    public PhysicianRoundingDialogFragment() {
+    public NotificationsDialogFragment() {
         // Required empty public constructor
     }
 
-    public static PhysicianRoundingDialogFragment getInstance(List<String> doctors) {
+    public static NotificationsDialogFragment getInstance(List<NotificationMessages> notificationMessagesList) {
         // Required empty public constructor
-        doctorList = doctors;
-        return new PhysicianRoundingDialogFragment();
+        notificationMessages = notificationMessagesList;
+        return new NotificationsDialogFragment();
     }
 
     @Override
@@ -60,9 +57,9 @@ public class PhysicianRoundingDialogFragment extends BaseDialogFragment implemen
             alertDialog.setCanceledOnTouchOutside(false);
             if (!alertDialog.isShowing())
                 alertDialog.show();
-            View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_dialog_physician_rounding, null, false);
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_dialog_notifications, null, false);
             alertDialog.setContentView(view);
-            RecyclerView recyclerView = view.findViewById(R.id.today_physician_rounding_recycler_view);
+            RecyclerView recyclerView = view.findViewById(R.id.notification_recycler_view);
             setAdapter(recyclerView);
             view.findViewById(R.id.cancel).setOnClickListener(this);
         }
@@ -71,13 +68,10 @@ public class PhysicianRoundingDialogFragment extends BaseDialogFragment implemen
 
     private void setAdapter(RecyclerView recyclerView) {
         if (getActivity() != null) {
-            PhysicianAdapter physicianAdapter = new PhysicianAdapter(getActivity(), doctorList);
+            NotificationsAdapter notificationsAdapter = new NotificationsAdapter(getActivity(), notificationMessages);
             recyclerView.setHasFixedSize(true);
-            int valueInPixels = getResources().getInteger(R.integer.grid_view_spacing);
-            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), Constants.NUMBER_OF_COLUMNS));
-            recyclerView.addItemDecoration(new GridSpacingItemDecoration(Constants.NUMBER_OF_COLUMNS, CommonUtils.dpToPx(recyclerView.getContext(), valueInPixels), true));
-            recyclerView.setNestedScrollingEnabled(false);
-            recyclerView.setAdapter(physicianAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            recyclerView.setAdapter(notificationsAdapter);
         }
     }
 
@@ -94,11 +88,6 @@ public class PhysicianRoundingDialogFragment extends BaseDialogFragment implemen
         blockBackButtonPressWhenDialogOpen();
     }
 
-    private void blockBackButtonPressWhenDialogOpen() {
-        if (getDialog() != null) {
-            getDialog().setOnKeyListener((dialog, keyCode, event) -> (keyCode == android.view.KeyEvent.KEYCODE_BACK));
-        }
-    }
 
     @Override
     public void onDismiss(DialogInterface dialog) {

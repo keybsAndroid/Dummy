@@ -1,20 +1,21 @@
-package com.keybs.rc.modules.preference;
+package com.royalcommission.bs.modules.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.keybs.rc.app.AppController;
-import com.keybs.rc.modules.network.retrofit.model.responses.BaseResponse;
-import com.keybs.rc.modules.network.retrofit.model.responses.Patient;
-import com.keybs.rc.modules.utils.CommonUtils;
-import com.keybs.rc.modules.utils.DateUtils;
+import com.royalcommission.bs.app.AppController;
+import com.royalcommission.bs.modules.api.model.BaseResponse;
+import com.royalcommission.bs.modules.api.model.Patient;
+
+import timber.log.Timber;
+
 
 /**
  * Created by Prashant on 8/13/2018.
  */
 public class SharedPreferenceUtils {
 
-    private static final String REGION_PREFERENCES = "rc-kbs";
+    private static final String REGION_PREFERENCES = "rc-bs";
     private static final String PREF_LOGIN_STATUS = "login";
     private static final String PREF_GROUP_ADMIN = "groupAdmin";
     private static final String PREF_GRANT_ACCESS_ADMIN = "grandAdminByAdmin";
@@ -47,6 +48,8 @@ public class SharedPreferenceUtils {
     private static final String PREF_TODAY_NOTIFICATION = "todayNotification";
     private static final String PREF_TODAY_VR = "todayVR";
     private static final String PREF_CHECKED_INSIDE_HOSPITAL = "insideHospitalNavigation";
+    private static final String PREF_SCHEDULE_JOB = "jobSchedule";
+    private static final String PREF_APP_STATUS = "appStatus";
 
 
     public static void clearPreferenceUtils(Context context) {
@@ -417,48 +420,46 @@ public class SharedPreferenceUtils {
         return null;
     }
 
-
     public static void savePatientResponse(Context context, Patient patientResponse, BaseResponse baseResponse) {
         if (context != null && baseResponse != null) {
 
             if (baseResponse.getResponseCode() == 1) {
                 if (patientResponse != null) {
-                    SharedPreferenceUtils.setHospitalID(CommonUtils.getCurrentActivity(), patientResponse.getHospitalID());
-                    SharedPreferenceUtils.setPatientID(CommonUtils.getCurrentActivity(), patientResponse.getPatientId());
+                    SharedPreferenceUtils.setHospitalID(context, patientResponse.getHospitalID());
+                    SharedPreferenceUtils.setPatientID(context, patientResponse.getPatientId());
 
                     if (patientResponse.isGroupAdmin()) {
-                        SharedPreferenceUtils.setParentID(CommonUtils.getCurrentActivity(), patientResponse.getPatientId());
+                        SharedPreferenceUtils.setParentID(context, patientResponse.getPatientId());
                     }
 
                     if (CommonUtils.isValidString(patientResponse.getParentID())) {
-                        SharedPreferenceUtils.setParentID(CommonUtils.getCurrentActivity(), patientResponse.getParentID());
+                        SharedPreferenceUtils.setParentID(context, patientResponse.getParentID());
                     }
 
-                    SharedPreferenceUtils.setPatientPSE(CommonUtils.getCurrentActivity(), patientResponse.getPSE_CLS_CD());
-                    SharedPreferenceUtils.setPatientMobile(CommonUtils.getCurrentActivity(), patientResponse.getMobile());
-                    SharedPreferenceUtils.setPatientPME(CommonUtils.getCurrentActivity(), patientResponse.getPME_CLS_CD());
-                    SharedPreferenceUtils.saveGroupAdmin(CommonUtils.getCurrentActivity(), String.valueOf(patientResponse.isGroupAdmin()));
-                    SharedPreferenceUtils.saveGrantAccessByAdmin(CommonUtils.getCurrentActivity(), String.valueOf(patientResponse.isGrantAccessByAdmin()));
-                    SharedPreferenceUtils.saveFullName(CommonUtils.getCurrentActivity(), patientResponse.getFullName());
-                    SharedPreferenceUtils.saveGender(CommonUtils.getCurrentActivity(), patientResponse.getGender());
-                    SharedPreferenceUtils.saveDOB(CommonUtils.getCurrentActivity(), patientResponse.getBirthDate());
-                    SharedPreferenceUtils.saveBloodGroup(CommonUtils.getCurrentActivity(), patientResponse.getBloodGroup());
-                    SharedPreferenceUtils.saveLocalAccount(CommonUtils.getCurrentActivity(), String.valueOf(patientResponse.isLocalAccount()));
-                    SharedPreferenceUtils.setPatientCategory(CommonUtils.getCurrentActivity(), patientResponse.getPatientCategory());
+                    SharedPreferenceUtils.setPatientPSE(context, patientResponse.getPSE_CLS_CD());
+                    SharedPreferenceUtils.setPatientMobile(context, patientResponse.getMobile());
+                    SharedPreferenceUtils.setPatientPME(context, patientResponse.getPME_CLS_CD());
+                    SharedPreferenceUtils.saveGroupAdmin(context, String.valueOf(patientResponse.isGroupAdmin()));
+                    SharedPreferenceUtils.saveGrantAccessByAdmin(context, String.valueOf(patientResponse.isGrantAccessByAdmin()));
+                    SharedPreferenceUtils.saveFullName(context, patientResponse.getFullName());
+                    SharedPreferenceUtils.saveGender(context, patientResponse.getGender());
+                    SharedPreferenceUtils.saveDOB(context, patientResponse.getBirthDate());
+                    SharedPreferenceUtils.saveBloodGroup(context, patientResponse.getBloodGroup());
+                    SharedPreferenceUtils.saveLocalAccount(context, String.valueOf(patientResponse.isLocalAccount()));
+                    SharedPreferenceUtils.setPatientCategory(context, patientResponse.getPatientCategory());
                     if (isValidString(patientResponse.getEligibility())) {
                         if (patientResponse.getEligibility().equalsIgnoreCase("IR")
                                 || patientResponse.getEligibility().equalsIgnoreCase("CS")) {
-                            SharedPreferenceUtils.setEligibility(CommonUtils.getCurrentActivity(), "1");
+                            SharedPreferenceUtils.setEligibility(context, "1");
                         } else {
-                            SharedPreferenceUtils.setEligibility(CommonUtils.getCurrentActivity(), "0");
+                            SharedPreferenceUtils.setEligibility(context, "0");
                         }
                     }
-                    SharedPreferenceUtils.setSessionID(CommonUtils.getCurrentActivity(), baseResponse.getGuSessionID());
+                    SharedPreferenceUtils.setSessionID(context, baseResponse.getGuSessionID());
                 }
             }
         }
     }
-
 
     public static void saveLocalAccount(Context context, String hasLocalAccount) {
         if (context != null)
@@ -476,5 +477,81 @@ public class SharedPreferenceUtils {
         return getLocalAccount(context).equalsIgnoreCase(HAS_LOCAL_ACCOUNT);
     }
 
+
+    public static void scheduleJobForFirstTime(Context context, boolean isFirstTime) {
+        if (context != null) {
+            setPreferenceBoolean(context, isFirstTime);
+            Timber.tag("scheduleJob ").i("Started for the first time");
+        }
+    }
+
+    public static boolean isJobScheduledAlready(Context context) {
+        if (context != null) {
+            return getPreferenceBoolean(context);
+        } else {
+            return false;
+        }
+    }
+
+    public static void saveApplicationStatus(Context context, int appStatus) {
+        if (context != null) {
+            setPreferenceInteger(context, appStatus);
+        }
+    }
+
+    public static String getApplicationStatus(Context context) {
+        if (context != null) {
+            if (getPreferenceInteger(context) == AppController.APP_FORE_GROUNDED) {
+                return "APP_FORE_GROUNDED";
+            } else if (getPreferenceInteger(context) == AppController.APP_BACK_GROUNDED) {
+                return "APP_BACK_GROUNDED";
+            } else if (getPreferenceInteger(context) == AppController.APP_DESTROYED) {
+                return "APP_DESTROYED";
+            } else {
+                return "FAILED_TO_GET_APP_STATUS";
+            }
+        } else {
+            return "FAILED_TO_GET_APP_STATUS";
+        }
+    }
+
+    private static int getPreferenceInteger(Context context) {
+        try {
+            final SharedPreferences prefs = getPreferences(context);
+            return prefs.getInt(SharedPreferenceUtils.PREF_APP_STATUS, -1);
+        } catch (Exception e) {
+            Timber.e("getPref: %s", String.valueOf(e));
+            return -1;
+        }
+    }
+
+    private static void setPreferenceInteger(Context context, int preferenceValue) {
+        final SharedPreferences prefs = getPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(SharedPreferenceUtils.PREF_APP_STATUS, preferenceValue);
+        editor.apply();
+    }
+
+    private static void setPreferenceBoolean(Context context, boolean preferenceValue) {
+        final SharedPreferences prefs = getPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(SharedPreferenceUtils.PREF_SCHEDULE_JOB, preferenceValue);
+        editor.apply();
+    }
+
+
+    private static boolean getPreferenceBoolean(Context context) {
+        try {
+            final SharedPreferences prefs = getPreferences(context);
+            return prefs.getBoolean(SharedPreferenceUtils.PREF_SCHEDULE_JOB, false);
+        } catch (Exception e) {
+            Timber.e("getPref: %s", String.valueOf(e));
+        }
+        return false;
+    }
+
+    private static SharedPreferences getPreferences(Context context) {
+        return context.getSharedPreferences(SharedPreferenceUtils.REGION_PREFERENCES, Context.MODE_PRIVATE);
+    }
 
 }

@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/item_medicine_height"
     android:animateLayoutChanges="true"
-    android:minHeight="@dimen/item_operation_height"
+    android:minHeight="@dimen/item_medicine_height"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -22,12 +22,12 @@
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/view_margin_half"
                 android:layout_weight="0.15"
                 android:gravity="center"
-                android:src="@drawable/ic_operation_info_item"
+                android:src="@drawable/ic_discharge_medication"
                 tools:ignore="ContentDescription" />
 
             <RelativeLayout
@@ -50,37 +50,17 @@
                         android:layout_gravity="start|center"
                         android:maxLines="2"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_very_large"
+                        android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start|center"
-                        android:maxLines="1"
-                        android:textColor="@color/light_white"
-                        android:textSize="@dimen/text_size_large"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:id="@+id/room"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start|center"
-                        android:maxLines="1"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_large"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:id="@+id/diagnosis"
+                        android:id="@+id/details"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start|center"
                         android:maxLines="2"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_large"
+                        android:textSize="@dimen/text_size_normal"
                         android:textStyle="normal" />
 
                 </LinearLayout>

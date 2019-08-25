@@ -1,51 +1,50 @@
-package com.keybs.rc.views.adapters.general;
+package com.royalcommission.bs.views.adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.keybs.rc.R;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.royalcommission.bs.R;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 /**
  * Created by Prashant on 7/3/2018.
  */
-public class HomeGridViewAdapter extends RecyclerView.Adapter<HomeGridViewAdapter.ViewHolder> {
+public class DashBoardGridViewAdapter extends RecyclerView.Adapter<DashBoardGridViewAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
     private List<String> mMenuList;
+    private ClickListener mClickListener;
 
-    private int[] imageResources = {R.drawable.ic_appointment_svg, R.drawable.ic_list_task_svg,
-            R.drawable.ic_action_pay_for_selected_task_appointment_svg, R.drawable.ic_display_ticket_task_svg,
-            R.drawable.ic_route_guidance_inside_hospital_svg, R.drawable.ic_surveys_suggestions_complain_svg,
-            R.drawable.ic_medical_document_request_svg,
-            R.drawable.ic_visit_history_svg, R.drawable.ic_test_results_svg,
-            R.drawable.ic_prescriptions_svg,
-            R.drawable.ic_hospital_info_svg, R.drawable.ic_group_management_svg,
-            R.drawable.ic_education_svg, R.drawable.ic_eligibility_svg_,
-            R.drawable.ic_vaccination_svg, R.drawable.ic_emr_svg};
+    private int[] imageResources = {R.drawable.ic_patient_caregive_meal, R.drawable.ic_medical_document_requests,
+            /*R.drawable.ic_convenience_requests,*/ R.drawable.ic_medical_test_result, R.drawable.ic_operation_info,
+            R.drawable.ic_billing_statements, R.drawable.ic_outpatient_info, R.drawable.ic_inpatient_info, R.drawable.ic_discharge_medication};
 
 
-    public HomeGridViewAdapter(Context context, List<String> menuList) {
+    public DashBoardGridViewAdapter(Context context, List<String> menuList, ClickListener clickListener) {
         mMenuList = menuList;
         inflater = (LayoutInflater.from(context));
+        mClickListener = clickListener;
     }
 
     @NonNull
     @Override
-    public HomeGridViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DashBoardGridViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.item_grid, null);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(HomeGridViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NotNull DashBoardGridViewAdapter.ViewHolder holder, int position) {
         holder.textView.setText(mMenuList.get(holder.getAdapterPosition()));
         if (holder.getAdapterPosition() < imageResources.length)
             holder.imageView.setImageResource(imageResources[holder.getAdapterPosition()]);
@@ -71,7 +70,16 @@ public class HomeGridViewAdapter extends RecyclerView.Adapter<HomeGridViewAdapte
             super(view);
             imageView = view.findViewById(R.id.grid_image);
             textView = view.findViewById(R.id.grid_title);
+            view.setOnClickListener(v -> {
+                if (mClickListener != null) {
+                    mClickListener.onClick(getAdapterPosition());
+                }
+            });
         }
+    }
+
+    public interface ClickListener {
+        void onClick(int position);
     }
 
 

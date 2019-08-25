@@ -8,83 +8,66 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.royalcommission.bs.R;
-import com.royalcommission.bs.views.interfaces.SubMenuAdapterClickListener;
+import com.royalcommission.bs.modules.api.model.Document;
+import com.royalcommission.bs.modules.utils.CommonUtils;
 
 import java.util.List;
 
 /**
  * Created by Prashant on 10/17/2018.
  */
-public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.SubMenuHolder> {
+public class CompletedDocumentsAdapter extends RecyclerView.Adapter<CompletedDocumentsAdapter.DocumentHolder> {
 
-    private int clickedPosition = -1;
     private Context mContext;
-    private List<String> mSubMenuList;
-    private SubMenuAdapterClickListener mMenuItemClickListener;
+    private List<Document> documentList;
+    private CompletedDocumentsClickListener documentsClickListener;
 
-    public SubMenuAdapter(Context context, List<String> subMenuList, SubMenuAdapterClickListener menuItemClickListener) {
+    public CompletedDocumentsAdapter(Context context, List<Document> subMenuList, CompletedDocumentsClickListener menuItemClickListener) {
         this.mContext = context;
-        this.mSubMenuList = subMenuList;
-        this.mMenuItemClickListener = menuItemClickListener;
+        this.documentList = subMenuList;
+        this.documentsClickListener = menuItemClickListener;
     }
 
     @NonNull
     @Override
-    public SubMenuAdapter.SubMenuHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public CompletedDocumentsAdapter.DocumentHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(mContext)
-                .inflate(R.layout.item_row_sub_menu, viewGroup, false);
-        return new SubMenuHolder(view);
+                .inflate(R.layout.item_completed_documents, viewGroup, false);
+        return new DocumentHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final SubMenuAdapter.SubMenuHolder subMenuHolder, int position) {
-        String name = mSubMenuList.get(position);
-        subMenuHolder.subMenuName.setText(name);
-        subMenuHolder.itemView.setOnClickListener(v -> {
-            mMenuItemClickListener.onSubMenuItemClickListener(subMenuHolder.getAdapterPosition());
-            clickedPosition = subMenuHolder.getAdapterPosition();
-            notifyDataSetChanged();
-        });
-
-        if (position == mSubMenuList.size() - 1) {
-            subMenuHolder.lineView.setVisibility(View.GONE);
-        } else {
-            subMenuHolder.lineView.setVisibility(View.VISIBLE);
-        }
-
-        //changeBackGround(subMenuHolder, clickedPosition);
-    }
-
-    private void changeBackGround(SubMenuHolder holder, int clickedPosition) {
-        if (holder != null && clickedPosition != -1) {
-            if (clickedPosition == holder.getAdapterPosition()) {
-                holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.shadowColor));
-            } else {
-                holder.itemView.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.color.white));
-            }
+    public void onBindViewHolder(@NonNull final CompletedDocumentsAdapter.DocumentHolder subMenuHolder, int position) {
+        Document document = documentList.get(position);
+        if (document != null) {
+            if (CommonUtils.isValidString(document.getFormName()))
+                subMenuHolder.docName.setText(document.getFormName());
+            subMenuHolder.docImage.setOnClickListener(v -> documentsClickListener.onClick(document));
+            subMenuHolder.itemView.setOnClickListener(v -> documentsClickListener.onClick(document));
         }
     }
+
 
     @Override
     public int getItemCount() {
-        return mSubMenuList.size();
+        return documentList.size();
     }
 
-    class SubMenuHolder extends RecyclerView.ViewHolder {
-        private TextView subMenuName;
-        private ImageView subMenuArrow;
-        private View lineView;
+    class DocumentHolder extends RecyclerView.ViewHolder {
+        private TextView docName;
+        private ImageView docImage;
 
-
-        SubMenuHolder(@NonNull View itemView) {
+        DocumentHolder(@NonNull View itemView) {
             super(itemView);
-            subMenuName = itemView.findViewById(R.id.submenu);
-            subMenuArrow = itemView.findViewById(R.id.arrow);
-            lineView = itemView.findViewById(R.id.line_view);
+            docName = itemView.findViewById(R.id.document);
+            docImage = itemView.findViewById(R.id.zoom);
         }
+    }
+
+    public interface CompletedDocumentsClickListener {
+        void onClick(Document document);
     }
 }

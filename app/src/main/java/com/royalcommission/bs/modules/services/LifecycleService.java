@@ -1,12 +1,11 @@
-package com.iraqi.services;
+package com.royalcommission.bs.modules.services;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.iraqi.app.AppController;
-import com.iraqi.modules.sdk.SDKManager;
-import com.iraqi.modules.utils.SharedPreferenceUtils;
+import com.royalcommission.bs.app.AppController;
+import com.royalcommission.bs.modules.utils.SharedPreferenceUtils;
 
 import timber.log.Timber;
 
@@ -30,8 +29,6 @@ public class LifecycleService extends Service {
     @Override
     public void onTaskRemoved(Intent rootIntent) {
         SharedPreferenceUtils.saveApplicationStatus(AppController.getInstance(), AppController.APP_DESTROYED);
-        if (SDKManager.mServiceBound)
-            SDKManager.getInstance().unBindService(AppController.getInstance());
         stopSelf();
         Timber.tag("Lifecycle.Event").e("APP_DESTROYED");
     }

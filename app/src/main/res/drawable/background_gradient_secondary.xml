@@ -3,13 +3,13 @@
     android:shape="rectangle">
 
     <gradient
-        android:angle="45"
-        android:centerColor="@color/gradientStart"
+        android:angle="0"
+        android:centerColor="@color/secondary_gradient_dark"
         android:centerX="49%"
-        android:endColor="@color/gradientEnd"
-        android:startColor="@color/gradientStart"
+        android:endColor="@color/secondary_gradient_light"
+        android:startColor="@color/secondary_gradient_dark"
         android:type="linear" />
 
-    <corners android:radius="@dimen/card_corner_radius"/>
+    <corners android:radius="@dimen/login_card_corner_radius" />
 
 </shape>

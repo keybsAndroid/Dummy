@@ -1,47 +1,40 @@
 package com.royalcommission.bs.views.dialogs;
 
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.royalcommission.bs.R;
-import com.royalcommission.bs.modules.api.model.NotificationMessages;
-import com.royalcommission.bs.views.adapters.NotificationsAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.royalcommission.bs.views.activities.HomeActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NotificationsDialogFragment extends BaseDialogFragment implements View.OnClickListener {
+public class InternetDialogFragment extends BaseDialogFragment implements View.OnClickListener {
 
     private AlertDialog alertDialog;
     private long lastClickedTime;
 
-    private static List<NotificationMessages> notificationMessages = new ArrayList<>();
 
-    public NotificationsDialogFragment() {
+    public InternetDialogFragment() {
         // Required empty public constructor
-    }
-
-    public static NotificationsDialogFragment getInstance(List<NotificationMessages> notificationMessagesList) {
-        // Required empty public constructor
-        notificationMessages = notificationMessagesList;
-        return new NotificationsDialogFragment();
     }
 
     @Override
@@ -49,6 +42,7 @@ public class NotificationsDialogFragment extends BaseDialogFragment implements V
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -57,22 +51,67 @@ public class NotificationsDialogFragment extends BaseDialogFragment implements V
             alertDialog.setCanceledOnTouchOutside(false);
             if (!alertDialog.isShowing())
                 alertDialog.show();
-            View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_dialog_notifications, null, false);
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_dialog_internet, null, false);
             alertDialog.setContentView(view);
-            RecyclerView recyclerView = view.findViewById(R.id.notification_recycler_view);
-            setAdapter(recyclerView);
+            WebView webView = view.findViewById(R.id.web_view);
+            webView.loadUrl(getString(R.string.google_url));
+            WebSettings webSettings = webView.getSettings();
+            webSettings.setBuiltInZoomControls(true);
+            webSettings.setDisplayZoomControls(false);
+            webSettings.setLoadWithOverviewMode(true);
+            webSettings.setUseWideViewPort(true);
+            webSettings.setJavaScriptEnabled(true);
+            webSettings.setSupportZoom(true);
+            webView.setWebViewClient(new MyWebViewClient());
             view.findViewById(R.id.cancel).setOnClickListener(this);
+            webView.setOnKeyListener((v, keyCode, event) -> {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    WebView webView1 = (WebView) v;
+
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        if (webView1.canGoBack()) {
+                            webView1.goBack();
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            });
         }
         return alertDialog;
     }
 
-    private void setAdapter(RecyclerView recyclerView) {
-        if (getActivity() != null) {
-            NotificationsAdapter notificationsAdapter = new NotificationsAdapter(getActivity(), notificationMessages);
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            recyclerView.setAdapter(notificationsAdapter);
+
+    public class MyWebViewClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
         }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+            showHideProgress(true);
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            showHideProgress(false);
+        }
+    }
+
+    private void showHideProgress(boolean isShow) {
+        if (getActivity() != null) {
+            if (isShow) {
+                ((HomeActivity) getActivity()).showProgress(true);
+            } else {
+                ((HomeActivity) getActivity()).hideProgress(true);
+            }
+        }
+
     }
 
 
@@ -85,14 +124,9 @@ public class NotificationsDialogFragment extends BaseDialogFragment implements V
             params.height = ViewGroup.LayoutParams.MATCH_PARENT;
             getDialog().getWindow().setAttributes(params);
         }
-        blockBackButtonPressWhenDialogOpen();
+        //blockBackButtonPressWhenDialogOpen();
     }
 
-    private void blockBackButtonPressWhenDialogOpen() {
-        if (getDialog() != null) {
-            getDialog().setOnKeyListener((dialog, keyCode, event) -> (keyCode == android.view.KeyEvent.KEYCODE_BACK));
-        }
-    }
 
     @Override
     public void onDismiss(DialogInterface dialog) {

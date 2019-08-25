@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/docHeight"
+    android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:minHeight="@dimen/docHeight"
+    android:minHeight="@dimen/item_operation_height"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -16,36 +16,76 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <TextView
-                android:id="@+id/document"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/view_margin_half"
-                android:layout_weight="0.8"
-                android:minHeight="@dimen/edit_text_min_height"
-                android:padding="@dimen/padding_medium"
-                android:text="@string/no_results"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large"
-                android:textStyle="normal" />
-
             <ImageView
-                android:id="@+id/zoom"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/view_margin_half"
-                android:layout_weight="0.2"
-                android:background="@drawable/rectangular_border_corner"
+                android:layout_weight="0.15"
                 android:gravity="center"
-                android:src="@drawable/ic_completed_document_zoom"
+                android:src="@drawable/ic_operation_info_item"
                 tools:ignore="ContentDescription" />
 
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/view_margin_half"
+                android:layout_weight="0.85"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_very_large"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center"
+                        android:gravity="center"
+                        android:textColor="@color/light_white"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/room"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/diagnosis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
 
     </RelativeLayout>

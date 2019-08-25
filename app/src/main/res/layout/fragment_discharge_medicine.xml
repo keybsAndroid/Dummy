@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".views.fragments.dashboard.discharge.DischargeMedicineFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@drawable/screen_background_corner"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <include
+            android:id="@+id/title_layout"
+            layout="@layout/layout_title" />
+
+        <include
+            android:id="@+id/list_duration"
+            layout="@layout/layout_list_duration_test_results" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/discharge_medicine_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_margin_half"
+            android:background="@color/white"
+            android:scrollbars="vertical" />
+    </LinearLayout>
+
+</LinearLayout>

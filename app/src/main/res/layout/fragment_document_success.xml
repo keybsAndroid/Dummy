@@ -4,46 +4,29 @@
     android:layout_height="match_parent"
     android:background="@drawable/screen_background_corner">
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_margin="@dimen/activity_margin"
-        android:background="@drawable/rectangular_border_corner"
-        android:orientation="horizontal"
-        android:weightSum="1">
+        android:layout_gravity="center"
+        android:gravity="start"
+        android:textColor="@color/colorPrimaryText"
+        android:textDirection="locale"
+        android:textSize="@dimen/text_size_very_large" />
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/view_margin_half"
-            android:layout_weight="0.7"
-            android:background="@android:color/transparent"
-            android:hint="@string/enter_your_email"
-            android:imeOptions="actionDone"
-            android:inputType="textEmailAddress"
-            android:minWidth="@dimen/min_email_width"
-            android:minHeight="@dimen/editTextHeight"
-            android:textColor="@color/textColorTertiary" />
-
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="0.3"
-            android:background="@drawable/button_primary"
-            android:clickable="true"
-            android:foreground="?selectableItemBackground"
-            android:gravity="center"
-            android:padding="@dimen/view_margin_half"
-            android:text="@string/submit"
-            android:textAllCaps="false"
-            android:textColor="@color/white" />
-
-
-    </LinearLayout>
-
+    <ImageView
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/activity_margin_large"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:src="@drawable/ic_close"
+        android:visibility="visible" />
 
 </RelativeLayout>

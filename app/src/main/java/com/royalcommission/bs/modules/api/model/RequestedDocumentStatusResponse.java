@@ -8,13 +8,13 @@ import java.util.List;
 /**
  * Created by Prashant on 12/17/2018.
  */
-public class DocumentResponse {
+public class RequestedDocumentStatusResponse {
 
     @SerializedName("CommonResponse")
     private BaseResponse baseResponse;
 
-    @SerializedName("DocumentResponse")
-    private List<Document> documentList;
+    @SerializedName("MedicalDocStatusListResponse")
+    private List<RequestedDocumentStatus> requestedDocumentStatusList;
 
     public BaseResponse getBaseResponse() {
         return baseResponse;
@@ -24,11 +24,11 @@ public class DocumentResponse {
         this.baseResponse = baseResponse;
     }
 
-    public List<Document> getDocumentList() {
-        return documentList;
+    public List<RequestedDocumentStatus> getRequestedDocumentStatusList() {
+        return requestedDocumentStatusList;
     }
 
-    public void setDocumentList(List<Document> documentList) {
-        this.documentList = documentList;
+    public void setRequestedDocumentStatusList(List<RequestedDocumentStatus> requestedDocumentStatusList) {
+        this.requestedDocumentStatusList = requestedDocumentStatusList;
     }
 }

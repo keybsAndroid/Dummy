@@ -4,70 +4,69 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.royalcommission.bs.R;
-import com.royalcommission.bs.modules.api.model.Document;
+import com.royalcommission.bs.modules.api.model.OperationInfo;
 import com.royalcommission.bs.modules.utils.CommonUtils;
+import com.royalcommission.bs.modules.utils.DateUtils;
 
 import java.util.List;
 
 /**
  * Created by Prashant on 10/17/2018.
  */
-public class CompletedDocumentsAdapter extends RecyclerView.Adapter<CompletedDocumentsAdapter.DocumentHolder> {
+public class OperationInfoAdapter extends RecyclerView.Adapter<OperationInfoAdapter.OperationHolder> {
 
     private Context mContext;
-    private List<Document> documentList;
-    private CompletedDocumentsClickListener documentsClickListener;
+    private List<OperationInfo> operationInfoList;
 
-    public CompletedDocumentsAdapter(Context context, List<Document> subMenuList, CompletedDocumentsClickListener menuItemClickListener) {
+    public OperationInfoAdapter(Context context, List<OperationInfo> operationInfos) {
         this.mContext = context;
-        this.documentList = subMenuList;
-        this.documentsClickListener = menuItemClickListener;
+        this.operationInfoList = operationInfos;
     }
 
     @NonNull
     @Override
-    public CompletedDocumentsAdapter.DocumentHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(mContext)
-                .inflate(R.layout.item_completed_documents, viewGroup, false);
-        return new DocumentHolder(view);
+    public OperationHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_op_info, viewGroup, false);
+        return new OperationHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final CompletedDocumentsAdapter.DocumentHolder subMenuHolder, int position) {
-        Document document = documentList.get(position);
-        if (document != null) {
-            if (CommonUtils.isValidString(document.getFormName()))
-                subMenuHolder.docName.setText(document.getFormName());
-            subMenuHolder.docImage.setOnClickListener(v -> documentsClickListener.onClick(document));
-            subMenuHolder.itemView.setOnClickListener(v -> documentsClickListener.onClick(document));
+    public void onBindViewHolder(@NonNull final OperationHolder operationHolder, int position) {
+        OperationInfo operationInfo = operationInfoList.get(position);
+        if (operationInfo != null) {
+            if (CommonUtils.isValidString(operationInfo.getName()))
+                operationHolder.name.setText(operationInfo.getName());
+            if (CommonUtils.isValidString(operationInfo.getDate())) {
+                String operationTime = DateUtils.getOperationTime(operationInfo.getDate());
+                operationHolder.date.setText(operationTime);
+            }
+            if (CommonUtils.isValidString(operationInfo.getRoom()))
+                operationHolder.room.setText(operationInfo.getRoom());
+            if (CommonUtils.isValidString(operationInfo.getDiagnosis()))
+                operationHolder.diagnosis.setText(operationInfo.getDiagnosis());
         }
     }
-
 
     @Override
     public int getItemCount() {
-        return documentList.size();
+        return operationInfoList.size();
     }
 
-    class DocumentHolder extends RecyclerView.ViewHolder {
-        private TextView docName;
-        private ImageView docImage;
+    class OperationHolder extends RecyclerView.ViewHolder {
+        private TextView name, date, room, diagnosis;
 
-        DocumentHolder(@NonNull View itemView) {
+        OperationHolder(@NonNull View itemView) {
             super(itemView);
-            docName = itemView.findViewById(R.id.document);
-            docImage = itemView.findViewById(R.id.zoom);
+            name = itemView.findViewById(R.id.name);
+            date = itemView.findViewById(R.id.date);
+            room = itemView.findViewById(R.id.room);
+            diagnosis = itemView.findViewById(R.id.diagnosis);
         }
-    }
-
-    public interface CompletedDocumentsClickListener {
-        void onClick(Document document);
     }
 }
