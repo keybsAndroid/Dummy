@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/homeBg"
+    tools:context=".views.fragments.testresults.TestResultsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/laboratory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/laboratory_cv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/card_view_height"
+                android:layout_marginTop="@dimen/card_view_margin"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:visibility="gone"
+                app:cardCornerRadius="@dimen/item_home_adapter_card_radius"
+                app:cardElevation="@dimen/item_home_adapter_card_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_weight="0.15"
+                        android:src="@drawable/ic_laboratory"
+                        android:tint="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_weight="0.7"
+                        android:gravity="start|center"
+                        android:text="@string/laboratory"
+                        android:textAlignment="viewStart"
+                        android:textDirection="anyRtl"
+                        android:textSize="@dimen/medium" />
+
+                    <ImageView
+                        android:id="@+id/laboratory_cv_arrow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_weight="0.15"
+                        android:drawableTint="@color/colorPrimaryText"
+                        android:gravity="center"
+                        android:src="@drawable/arrow_right_24_auto_mirror"
+                        android:tag="0" />
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/laboratory_list_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <include
+                    android:id="@+id/include_laboratory_list"
+                    layout="@layout/layout_test_results_list_view" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/radiology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/radiology_cv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/card_view_height"
+                android:layout_marginTop="@dimen/card_view_margin"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                app:cardCornerRadius="@dimen/item_home_adapter_card_radius"
+                app:cardElevation="@dimen/item_home_adapter_card_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_weight="0.15"
+                        android:src="@drawable/ic_radiology"
+                        android:tint="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_weight="0.7"
+                        android:gravity="start|center"
+                        android:text="@string/radiology"
+                        android:textAlignment="viewStart"
+                        android:textDirection="anyRtl"
+                        android:textSize="@dimen/medium" />
+
+                    <ImageView
+                        android:id="@+id/radiology_cv_arrow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_weight="0.15"
+                        android:drawableTint="@color/colorPrimaryText"
+                        android:gravity="center"
+                        android:src="@drawable/arrow_right_24_auto_mirror"
+                        android:tag="0" />
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/radiology_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <include
+                    android:id="@+id/include_radiology_list"
+                    layout="@layout/layout_test_results_list_view" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/special_clinic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/special_clinic_cv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/card_view_height"
+                android:layout_marginTop="@dimen/card_view_margin"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                app:cardCornerRadius="@dimen/item_home_adapter_card_radius"
+                app:cardElevation="@dimen/item_home_adapter_card_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_weight="0.15"
+                        android:src="@drawable/ic_special_clinic"
+                        android:tint="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_weight="0.7"
+                        android:gravity="start|center"
+                        android:text="@string/special_clinic"
+                        android:textAlignment="viewStart"
+                        android:textDirection="anyRtl"
+                        android:textSize="@dimen/medium" />
+
+                    <ImageView
+                        android:id="@+id/special_clinic_cv_arrow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_weight="0.15"
+                        android:drawableTint="@color/colorPrimaryText"
+                        android:gravity="center"
+                        android:src="@drawable/arrow_right_24_auto_mirror"
+                        android:tag="0" />
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/special_clinic_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <include
+                    android:id="@+id/include_special_clinic_list"
+                    layout="@layout/layout_test_results_list_view" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/pathology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/pathology_cv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/card_view_height"
+                android:layout_marginTop="@dimen/card_view_margin"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                app:cardCornerRadius="@dimen/item_home_adapter_card_radius"
+                app:cardElevation="@dimen/item_home_adapter_card_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_weight="0.15"
+                        android:src="@drawable/ic_pathology"
+                        android:tint="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_weight="0.7"
+                        android:gravity="start|center"
+                        android:text="@string/pathology"
+                        android:textAlignment="viewStart"
+                        android:textDirection="anyRtl"
+                        android:textSize="@dimen/medium" />
+
+                    <ImageView
+                        android:id="@+id/pathology_cv_arrow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_weight="0.15"
+                        android:drawableTint="@color/colorPrimaryText"
+                        android:gravity="center"
+                        android:src="@drawable/arrow_right_24_auto_mirror"
+                        android:tag="0" />
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/pathology_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <include
+                    android:id="@+id/pathology_list"
+                    layout="@layout/layout_test_results_list_view" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tabs"
+                    style="@style/TabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:visibility="gone"
+                    android:background="@color/colorPrimary" />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

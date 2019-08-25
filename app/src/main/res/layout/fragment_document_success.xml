@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/screen_background_corner">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/activity_margin"
+        android:background="@drawable/rectangular_border_corner"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/view_margin_half"
+            android:layout_weight="0.7"
+            android:background="@android:color/transparent"
+            android:hint="@string/enter_your_email"
+            android:imeOptions="actionDone"
+            android:inputType="textEmailAddress"
+            android:minWidth="@dimen/min_email_width"
+            android:minHeight="@dimen/editTextHeight"
+            android:textColor="@color/textColorTertiary" />
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.3"
+            android:background="@drawable/button_primary"
+            android:clickable="true"
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:padding="@dimen/view_margin_half"
+            android:text="@string/submit"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

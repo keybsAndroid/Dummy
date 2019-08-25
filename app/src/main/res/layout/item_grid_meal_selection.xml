@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/meal_layout"
+    android:layout_height="@dimen/meal_layout"
+    android:animateLayoutChanges="true"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.999"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/grid_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/activity_margin_half"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:minHeight="@dimen/title_height"
+            android:textColor="@color/black"
+            android:textDirection="locale"
+            android:textSize="@dimen/text_size_normal" />
+
+        <ImageView
+            android:id="@+id/grid_image"
+            android:layout_width="@dimen/nurse_image_size"
+            android:layout_height="@dimen/nurse_image_size"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_margin_half"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/view_margin_half"
+            android:background="@drawable/button_primary_corner_small"
+            android:minWidth="@dimen/nurse_image_size"
+            android:text="@string/select"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/border"
+        android:layout_width="0.5dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:layout_marginBottom="@dimen/activity_margin"
+        android:layout_weight="0.001"
+        android:background="@color/borderColor" />
+
+</LinearLayout>

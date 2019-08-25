@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <item>
+                <shape>
+                    <corners android:radius="0dp" />
+                    <padding android:bottom="@dimen/drawable_margin" android:left="@dimen/drawable_margin" android:right="@dimen/drawable_margin" android:top="@dimen/drawable_margin" />
+                </shape>
+            </item>
+            <item android:right="@dimen/drawable_margin">
+                <bitmap android:gravity="center_vertical|end" android:src="@drawable/ic_chevron_down_black_24dp" />
+            </item>
+        </layer-list>
+    </item>
+</selector>

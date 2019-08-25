@@ -1,0 +1,15 @@
+<vector android:autoMirrored="true" android:height="24dp"
+    android:viewportHeight="98" android:viewportWidth="212"
+    android:width="24dp" xmlns:aapt="http://schemas.android.com/aapt" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:pathData="M10,97.8H202c5.5,0 10,-4.5 10,-10V10.1c0,-5.5 -4.5,-10 -10,-10H10c-5.5,0 -10,4.5 -10,10v77.7C0,93.3 4.5,97.8 10,97.8z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:endX="-38.5046" android:endY="168.0038"
+                android:startX="276.091" android:startY="-91.0749" android:type="linear">
+                <item android:color="#FFFFFFFF" android:offset="0"/>
+                <item android:color="#FF000000" android:offset="1"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path android:fillAlpha="0.05" android:fillColor="#FFFFFF"
+        android:pathData="M202,97.8c5.5,0 10,-4.5 10,-10V10.1c0,-5.5 -4.5,-10 -10,-10H10c-5.5,0 -10,4.5 -10,10" android:strokeAlpha="0.05"/>
+</vector>

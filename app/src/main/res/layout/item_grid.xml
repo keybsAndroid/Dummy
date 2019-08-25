@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/grid_item_bg"
+    android:elevation="@dimen/tool_bar_elevation"
+    android:foreground="?selectableItemBackground"
+    app:elevation="@dimen/tool_bar_elevation"
+    tools:ignore="UnusedAttribute">
+
+    <LinearLayout
+        android:id="@+id/root_view"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/grid_item_layout"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/grid_margin"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="@dimen/grid_item_width_height"
+            android:layout_height="@dimen/grid_item_width_height"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/grid_image"
+                android:layout_width="@dimen/grid_menu_image"
+                android:layout_height="@dimen/grid_menu_image"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:src="@drawable/outline_insert_invitation_black_48" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/grid_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/grid_margin"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textDirection="locale"
+            android:textSize="@dimen/small" />
+    </LinearLayout>
+
+
+</RelativeLayout>
